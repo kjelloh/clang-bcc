@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.1)
 project (clang-bcc)
-add_executable(clang-bcc main.cpp parameters.cpp)
+add_executable(clang-bcc main.cpp parameters.cpp parameters.h)
 
 if(MSVC14 OR MSVC12) # has the support we need
     # remove unnecessary warnings about unchecked iterators

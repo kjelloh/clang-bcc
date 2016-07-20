@@ -4,14 +4,17 @@
 #endif
 
 #ifdef _WIN32
-#include <tchar.h>
+	#include <tchar.h>
 #else
-typedef char _TCHAR;
-#define _tmain main
+	typedef char _TCHAR;
+	#define _tmain main
 #endif
 
 // Suppress Visual Studio warnings about call to standard library with unchecked iterators (e.g., call to std::missmatch using boost path iterators)
-#define _SCL_SECURE_NO_WARNINGS 
+#ifndef _SCL_SECURE_NO_WARNINGS
+	// Not defined by build environment (e.g. cmake) su define it here
+	#define _SCL_SECURE_NO_WARNINGS 
+#endif
 
 #include "parameters.h"
 
@@ -51,7 +54,7 @@ std::runtime_error runtime_exception_of_win_error_code(const std::string sPrefix
 	ssMessage << sPrefix << " Error ";
 	ssMessage << api_error_code << " : \"";
 
-	LPWSTR lpMsgBuf;
+	LPTSTR lpMsgBuf; // Asume 
 
 	FormatMessage(
 		FORMAT_MESSAGE_ALLOCATE_BUFFER |
@@ -115,7 +118,7 @@ private:
 	}
 };
 
-typedef Pipe<HANDLE> BccPipe;
+typedef Pipe<HANDLE> StdIOPipe;
 
 class Process {
 public:
@@ -143,9 +146,9 @@ public:
 
 	void execute(
 		 Parameters parameters
-		,BccPipe::shared_ptr pToProcessStdIn
-		,BccPipe::shared_ptr pFromProcessStdOut
-		,BccPipe::shared_ptr pFromProcessStdErr) {
+		,StdIOPipe::shared_ptr pToProcessStdIn
+		,StdIOPipe::shared_ptr pFromProcessStdOut
+		,StdIOPipe::shared_ptr pFromProcessStdErr) {
 		this->create_process(parameters, pToProcessStdIn, pFromProcessStdOut, pFromProcessStdErr);
 		this->waitTerminate();
 	}
@@ -156,9 +159,9 @@ private:
 	std::unique_ptr<PROCESS_INFORMATION> m_pPROCESS_INFORMATION; // shared in case support for copy (ensure STARTUPINFO address follows Process Handle)
 	void create_process(
 		  Parameters parameters
-		, BccPipe::shared_ptr pToProcessStdIn
-		, BccPipe::shared_ptr pFromProcessStdOut
-		, BccPipe::shared_ptr pFromProcessStdErr) {
+		, StdIOPipe::shared_ptr pToProcessStdIn
+		, StdIOPipe::shared_ptr pFromProcessStdOut
+		, StdIOPipe::shared_ptr pFromProcessStdErr) {
 		// 
 		//	m_pToProcessStdIn.tx					m_pFromProcessStdOut.rx		m_pFromProcessStdErr.rx
 		//        |												^					  ^
@@ -194,10 +197,8 @@ private:
 		std::for_each(std::begin(parameters), std::end(parameters), [&ssCmdLine](Parameter p) {ssCmdLine << " " << p; });
 		std::string sCmdLine(ssCmdLine.str().c_str()); // copy to provide stack instance to API
 
-// TEST
-std::cout << "\nclang-bcc:CreateProcess=" << sCmdLine;
-
-		std::cout << "nclang-bcc:START COMPILER" << std::endl; // Flush our entries to stdout before letting child process do its stuff
+		std::cout << "\n[[CLANG-BCC]]:CreateProcess=" << sCmdLine;
+		std::cout << std::flush; // Flush our entries to stdout before letting child process do its stuff
 		// Start the child process. 
 		if (!CreateProcess(
 			NULL,   // No module name (use command line)
@@ -227,49 +228,102 @@ std::cout << "\nclang-bcc:CreateProcess=" << sCmdLine;
 
 };
 
-struct BccCompiler {
+struct Compiler {
 	void execute(Parameters parameters);
 	Path m_path;
 };
 
-void BccCompiler::execute(Parameters parameters) {
-	auto pToBcc = std::make_shared<BccPipe>("toBcc");
-	auto pFromBcc = std::make_shared<BccPipe>("fromBcc");
-	auto pBcc = std::make_shared<Process>(m_path);
-	pBcc->execute(parameters, pToBcc, pFromBcc, pFromBcc);
+void Compiler::execute(Parameters parameters) {
+	auto pPipeToCompiler = std::make_shared<StdIOPipe>("Pipe_To_Compiler");
+	auto pPipeFromCompiler = std::make_shared<StdIOPipe>("Pipe_From_Compiler");
+	auto pCompilerProcess = std::make_shared<Process>(m_path);
+
+	{
+		std::cout << "\n[[CLANG-BCC]]:Actual Compiler = " << this->m_path;
+		std::cout << "\n\t<Parameter List (vaules between [...]>";
+		std::for_each(std::begin(parameters), std::end(parameters), [](const Parameter& p) {std::cout << "\n\t[" << p << "]"; });
+	}
+	std::cout << "\n[[CLANG-BCC]]:START COMPILER";
+	pCompilerProcess->execute(parameters, pPipeToCompiler, pPipeFromCompiler, pPipeFromCompiler);
+	std::cout << "\n[[CLANG-BCC]]:COMPILER END";
+}
+
+enum e_BccCompiler {
+	e_BccCompiler_Undefined
+	, e_BccCompiler_bcc32
+	, e_BccCompiler_bcc32c
+	, e_BccCompiler_bcc64
+	, e_BccCompiler_Unknown
+};
+
+Path pathToCompiler(e_BccCompiler compiler_id) {
+	Path result("#unknown_compiler#");
+	switch (compiler_id) {
+	case e_BccCompiler_bcc32:
+		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32.exe)"; // Hard code to use embarcadero compiler to see how cmake reacts?
+		break;
+
+	case e_BccCompiler_bcc32c:
+		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe)"; // Hard code to use embarcadero compiler to see how cmake reacts?
+		break;
+	case e_BccCompiler_bcc64:
+		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc64.exe)"; // Hard code to use embarcadero compiler to see how cmake reacts?
+		break;
+	}
+
+	return result;
 }
 
  int _tmain(int argc, _TCHAR* argv[])
 {
-	std::string sOurPath(argv[0]); // Path to us
-	Parameters parameters(&argv[1], &argv[argc]); // skip argv[0] which is the path to "us" 
-	Path compiler_path(R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe)");
-
-	Parameters child_parameters;
-	if (parameters.size() >= 2) {
-		if (parameters[0] == "---") {
-			compiler_path = parameters[1]; // clang-bcc --- bcc32c
-			std::copy(parameters.begin() + 2, std::end(parameters), std::back_inserter(child_parameters));
-			parameters.erase(parameters.begin());
-			parameters.erase(parameters.begin());
-		}
-	}
-
-	std::copy(std::begin(parameters), std::end(parameters), std::back_inserter(child_parameters));
-
-	{
-		std::cout << "\nclang-bcc:compiler=" << compiler_path;
-		std::for_each(std::begin(child_parameters), std::end(child_parameters), [](const Parameter& p) {std::cout << "\n\t[" << p << "]"; });
-	}
-
-	BccCompiler bcc_compiler{compiler_path};
 	try {
-		bcc_compiler.execute(toBccParameters(child_parameters));
+		std::cout << "\n[[CLANG-BCC]]:START";
+
+		std::string sOurPath(argv[0]); // Path to us
+		Parameters parameters(&argv[1], &argv[argc]); // skip argv[0] which is the path to "us" 
+		//e_BccCompiler bcc_compiler = e_BccCompiler_bcc32;
+		e_BccCompiler bcc_compiler = e_BccCompiler_bcc32c;
+		//e_BccCompiler bcc_compiler = e_BccCompiler_bcc64;
+		Path compiler_path(pathToCompiler(bcc_compiler)); // default
+
+		// Process non-compiler parameters (set test purpose parameters)
+		{
+			if (parameters.size() >= 2) {
+				if (parameters[0] == "---") {
+					compiler_path = parameters[1]; // E.g., as in \n[[CLANG-BCC]] --- bcc32c
+					parameters.erase(parameters.begin()); // strip-off non-compiler parameter
+					parameters.erase(parameters.begin()); // strip-off non-compiler parameter
+				}
+			}
+
+			if (parameters.size() == 1) {
+				if (parameters[0] == "CMakeCXXCompilerId.cpp") {
+					// Asume we are called by cmake to compile the compler identification source file (e.g., CMakeCXXCompilerId.cpp)
+					compiler_path = "clang++.exe"; // Use clang to fool cmake "we" are a clang compiler
+					std::cout << "\n[[CLANG-BCC]]:CMake compiler identification compilation detected";
+					std::cout << "\n[[CLANG-BCC]]:Preparing to use actual compiler ==> " << compiler_path;
+				}
+			}
+		}
+
+		e_BccCompiler forced_compiler = e_BccCompiler_Undefined; // Do not force the compiler to use
+		//e_BccCompiler forced_compiler = e_BccCompiler_bcc32c; // Development test
+
+		if (forced_compiler > e_BccCompiler_Undefined && forced_compiler < e_BccCompiler_Unknown) {
+			Path forced_compiler_path = pathToCompiler(forced_compiler);
+			if (forced_compiler_path != compiler_path) {
+				compiler_path = forced_compiler_path;
+				std::cout << "\n[[CLANG-BCC]]:Forced Compiler Mode: Actual compiler forced to ==> "  << forced_compiler_path;
+			}
+		}
+
+		Compiler actual_compiler{ compiler_path };
+		actual_compiler.execute(toActualCompilerParameters(parameters));
 	}
 	catch (std::runtime_error& e) {
-		std::cout << "\nclang-bcc: Failed - Exception = " << e.what();
+		std::cout << "\n[[CLANG-BCC]]: Failed - Exception = " << e.what();
 	}
     
-	std::cout << "\nclang-bcc:END" << std::endl; // Report end and flush
+	std::cout << "\n[[CLANG-BCC]]:END" << std::endl; // Report end and flush
 	return 0;
 }

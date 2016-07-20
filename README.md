@@ -18,9 +18,68 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 >    │   clang-bcc.exe  // front-end to be used by cmake to engage Embarcadero bcc32, bcc32c or bcc64 "behind the scenes"
 
 * Place clang-bcc.exe short-cut in build folder below the cmake folder.
-* Use CMake to generate clang tool chain for your project using clang-bcc.exe as compiler.
-* clang-bcc.exe will transform passed options to the "behind the scene" Embarcadero Compiler
-* cmake will be able to use clang-bcc.exe to identify compiler and linker abilities and generate a build build environment
+* Use CMake to generate tool chain for your project using clang-bcc.exe as compiler.
+* clang-bcc will "fool" cmake into beleiving it is using a clang compiler (see "How clang-bcc tricks cmake to beleive it is using a clang compiler" below)
+* clang-bcc.exe will transform passed clang compiler options to the "behind the scene" Embarcadero Compiler
+* cmake will thus be able to use clang-bcc.exe to generate a build build environment that will call Embarcadero C++ compilers for build and link.
+
+## How clang-bcc tricks cmake to beleive it is using a clang compiler
+
+1. When cmake as first step compiles its compiler identification c++ file (CMakeCXXCompilerId.cpp) it provides no compiler options.
+  * When clang-bcc detects it is being called to compile without options it invokes the environment clang++ compiler.
+
+	[[CLANG-BCC]]:CMake compiler identification compilation detected
+	[[CLANG-BCC]]:Will use actual compiler clang++.exe
+	[[CLANG-BCC]]:Actual Compiler = clang++.exe
+		[CMakeCXXCompilerId.cpp]
+	[[CLANG-BCC]]:START COMPILER
+	[[CLANG-BCC]]:CreateProcess="clang++.exe" CMakeCXXCompilerId.cpp
+	[[CLANG-BCC]]:COMPILER END
+	[[CLANG-BCC]]:END
+
+
+  * In this way cmake will detect that the provided cpp-file was in fact compiled with clang and this it asumes clang options to be used.
+2. Cmake will then test if clang-bcc works with actual options.
+  * When clang-bcc is called with options for compilation it will call an Embarcadero C++ compiler (transforming provided options to Embarcadero Compiler options to compile)
+
+	[[CLANG-BCC]]:Actual Compiler = C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
+		[-o]
+		[CMakeFiles/cmTC_bdaed.dir/testCXXCompiler.cxx.obj]
+		[-c]
+		[C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
+
+	[[CLANG-BCC]]:START COMPILER
+	[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -o CMakeFiles/cmTC_bdaed.dir/testCXXCompiler.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxxEmbarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+	C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx:
+
+	[[CLANG-BCC]]:COMPILER END
+	[[CLANG-BCC]]:END
+
+3. Cmake will then test if clang-bcc may be used to link the compiled binary.
+  * When clang-bcc is called with options for compilation it will call an Embarcadero C++ compiler (transforming provided options to Embarcadero Compiler options to link)
+
+	[[CLANG-BCC]]:Actual Compiler = C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
+		[-Wl,--whole-archive]
+		[CMakeFiles/cmTC_bdaed.dir/objects.a]
+		[-Wl,--no-whole-archive]
+		[-o]
+		[cmTC_bdaed.exe]
+		[-Wl,--major-image-version,0,--minor-image-version,0]
+		[-lkernel32]
+		[-luser32]
+		[-lgdi32]
+		[-lwinspool]
+		[-lshell32]
+		[-lole32]
+		[-loleaut32]
+		[-luuid]
+		[-lcomdlg32]
+		[-ladvapi32]
+	[[CLANG-BCC]]:START COMPILER
+	[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -Wl,--whole-archive CMakeFiles/cmTC_bdaed.dir/objects.a -Wl,--no-whole-archive -o cmTC_bdaed.exe -Wl,--major-image-version,0,--minor-image-version,0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+
+	[[CLANG-BCC]]:COMPILER END
+	[[CLANG-BCC]]:END
 
 ## Example using MSYS2 and cmake and clang-bcc to generate a build environment for Microsoft GSL library
 
@@ -57,50 +116,91 @@ $
 
 ## Example of the call CMake does to clang-bcc.exe during the make environment generation (From ./CMakeFiles/CMakeOutput.log)
 
-Building CXX object CMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj
-/C/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/clang-bcc.exe  -tR -DWIN32   -tM  -Od -v   -oCMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj -P -c /C/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-
-clang-bcc:compiler=C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
-	[-tR]
-	[-DWIN32]
-	[-tM]
-	[-Od]
-	[-v]
-	[-oCMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj]
-	[-P]
-	[-c]
-	[C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
-clang-bcc:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -DWIN32 -tM -Od -v -oCMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj -P -c C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxxnclang-bcc:START COMPILER
-Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
-C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx:
-
-clang-bcc:END
+Building CXX object CMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj
 
-Linking CXX executable cmTC_c22ef.exe
+/C/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/clang-bcc.exe  -tR -DWIN32   -tM  -Od -v   -oCMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj -P -c /C/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+
+
+clang-bcc:compiler=C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
+
+	[-tR]
+
+	[-DWIN32]
+
+	[-tM]
+
+	[-Od]
+
+	[-v]
+
+	[-oCMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj]
+
+	[-P]
+
+	[-c]
+
+	[C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
+
+clang-bcc:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -DWIN32 -tM -Od -v -oCMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj -P -c C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxxnclang-bcc:START COMPILER
+
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+
+C:/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/CMakeFiles/CMakeTmp/testCXXCompiler.cxx:
+
+
+
+clang-bcc:END
+
+
+Linking CXX executable cmTC_c22ef.exe
+
 /C/Users/kjell-olovhogdahl/Documents/GitHub/GSL/build-clang-bcc-frontend/clang-bcc.exe  -tR -ecmTC_c22ef.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192   -v -tC  -tM  -Od -v   import32.lib  "CMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj" 
-
-clang-bcc:compiler=C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
-	[-tR]
-	[-ecmTC_c22ef.exe]
-	[-tM]
-	[-lS:1048576]
-	[-lSc:4098]
-	[-lH:1048576]
-	[-lHc:8192]
-	[-v]
-	[-tC]
-	[-tM]
-	[-Od]
-	[-v]
-	[import32.lib]
-	[CMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj]
-clang-bcc:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -ecmTC_c22ef.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v import32.lib CMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.objnclang-bcc:START COMPILER
-Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
-bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
-bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
-bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
-Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
-
+
+
+clang-bcc:compiler=C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
+
+	[-tR]
+
+	[-ecmTC_c22ef.exe]
+
+	[-tM]
+
+	[-lS:1048576]
+
+	[-lSc:4098]
+
+	[-lH:1048576]
+
+	[-lHc:8192]
+
+	[-v]
+
+	[-tC]
+
+	[-tM]
+
+	[-Od]
+
+	[-v]
+
+	[import32.lib]
+
+	[CMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.obj]
+
+clang-bcc:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -ecmTC_c22ef.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v import32.lib CMakeFiles/cmTC_c22ef.dir/testCXXCompiler.cxx.objnclang-bcc:START COMPILER
+
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+
+bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
+
+bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
+
+bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
+
+Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
+
+
+
 clang-bcc:END
 
 # Release 0.1

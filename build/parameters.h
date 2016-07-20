@@ -5,4 +5,4 @@
 using Parameter = std::string;
 using Parameters = std::vector<Parameter>;
 
-Parameters toBccParameters(const Parameters clang_parameters);
+Parameters toActualCompilerParameters(const Parameters clang_parameters);
