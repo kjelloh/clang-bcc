@@ -315,7 +315,18 @@ e_CallMode detectedCallMode(Parameters parameters) {
 		std::cout << "\n[[CLANG-BCC]]:START";
 
 		std::string sOurPath(argv[0]); // Path to us
-		Parameters parameters(&argv[1], &argv[argc]); // skip argv[0] which is the path to "us" 
+		Parameters parameters(&argv[1], &argv[argc]); // skip argv[0] which is the path to "us"
+
+		{
+			/*
+			C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -o CMakeFiles/cmTC_8228c.dir/testCXXCompiler.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+
+			*/
+			std::cout << "\n[[CLANG-BCC]]:" << sOurPath;
+			std::for_each(std::begin(parameters), std::end(parameters), [](const Parameter& p) {std::cout << " " << p;});
+		}
+
+
 		//const e_CompilerId bcc_compiler_id = eCompilerId_bcc32;
 		const e_CompilerId bcc_compiler_id = eCompilerId_bcc32c;
 		//const e_CompilerId bcc_compiler_id = eCompilerId_bcc64;
