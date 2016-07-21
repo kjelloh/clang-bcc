@@ -1,14 +1,15 @@
-﻿    # clang-bcc
-    A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the scene".
+# clang-bcc
 
-    ## Summary
+A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the scene".
 
-    * The idea when this project was created was to "fool" cmake it was using a clang compiler while behind the scene the Embarcadero RAD Studio C++ compiler was executed.
-    * The motivation was to be able to adopt Microsoft GSL library for teh Embarcadero RAD STudio C++ compilers.
-    * As it turns out cmake actually identifies the compiler from teh content of a compiled C++-file so it still identifies the Embarcadero compiler.
-    * The clang-bcc frontend is thus not a good name and this project should be renamed.
+## Summary
 
-    ## Synopsis
+* The idea when this project was created was to "fool" cmake it was using a clang compiler while behind the scene the Embarcadero RAD Studio C++ compiler was executed.
+* The motivation was to be able to adopt Microsoft GSL library for teh Embarcadero RAD STudio C++ compilers.
+* As it turns out cmake actually identifies the compiler from teh content of a compiled C++-file so it still identifies the Embarcadero compiler.
+* The clang-bcc frontend is thus not a good name and this project should be renamed.
+
+## Synopsis
 
     >C:\...\GitHub\clang-bcc\build
     >│   CMakeLists.txt
@@ -17,46 +18,45 @@
     >└───build
     >    │   clang-bcc.exe  // front-end to be used by cmake to engage Embarcadero bcc32, bcc32c or bcc64 "behind the scenes"
 
-    * Place clang-bcc.exe short-cut in build folder below the cmake folder.
-    * Use CMake to generate tool chain for your project using clang-bcc.exe as compiler.
-    * clang-bcc will "fool" cmake into beleiving it is using a clang compiler (see "How clang-bcc tricks cmake to beleive it is using a clang compiler" below)
-    * clang-bcc.exe will transform passed clang compiler options to the "behind the scene" Embarcadero Compiler
-    * cmake will thus be able to use clang-bcc.exe to generate a build build environment that will call Embarcadero C++ compilers for build and link.
-    * clang-bcc.exe acts as both C and C++ front-end (calling back-end actual compiler with apropriate parameters to compile or link correctly)
+* Place clang-bcc.exe short-cut in build folder below the cmake folder.
+* Use CMake to generate tool chain for your project using clang-bcc.exe as compiler.
+* clang-bcc will "fool" cmake into beleiving it is using a clang compiler (see "How clang-bcc tricks cmake to beleive it is using a clang compiler" below)
+* clang-bcc.exe will transform passed clang compiler options to the "behind the scene" Embarcadero Compiler
+* cmake will thus be able to use clang-bcc.exe to generate a build build environment that will call Embarcadero C++ compilers for build and link.
+* clang-bcc.exe acts as both C and C++ front-end (calling back-end actual compiler with apropriate parameters to compile or link correctly)
 
-    ## How clang-bcc tricks cmake to beleive it is using a clang compiler
+## How clang-bcc tricks cmake to beleive it is using a clang compiler
 
-    1. When cmake as first step compiles its compiler identification c++ file (CMakeCXXCompilerId.cpp) it provides no compiler options.
+1. When cmake as first step compiles its compiler identification c++ file (CMakeCXXCompilerId.cpp) it provides no compiler options.
 
-    * When clang-bcc detects it is being called to compile Cmake spedial source files for compiler detection - it then calls clang to generate clang identification.
-    * In this way cmake will detect that the provided cpp-file was in fact compiled with clang and this it asumes clang options to be used.
+  * When clang-bcc detects it is being called to compile Cmake spedial source files for compiler detection - it then calls clang to generate clang identification.
+  * In this way cmake will detect that the provided cpp-file was in fact compiled with clang and this it asumes clang options to be used.
 
-    2. Cmake will then test if clang-bcc works with actual options.
+2. Cmake will then test if clang-bcc works with actual options.
 
-    * When clang-bcc is called with options for compilation it will call an Embarcadero C++ compiler (transforming provided options to Embarcadero Compiler options to compile)
+  * When clang-bcc is called with options for compilation it will call an Embarcadero C++ compiler (transforming provided options to Embarcadero Compiler options to compile)
 
-    3. Cmake will then test if clang-bcc may be used to link the compiled binary.
+3. Cmake will then test if clang-bcc may be used to link the compiled binary.
 
-    * When clang-bcc is called with options for linking it will call an Embarcadero C++ compiler (transforming provided options to Embarcadero Compiler options to link)
+  * When clang-bcc is called with options for linking it will call an Embarcadero C++ compiler (transforming provided options to Embarcadero Compiler options to link)
 
-    #Version 0.2
+#Version 0.2
 
-    * clang-bcc - Nearer to work as clang front-end for cmake
-    + Now act as front-end for both C and C++ compiler
-    + back-end call and parameter transform only for bcc32c
-    + Added MINGW shell test of MSYS make file generation using clang-bcc as front-end
-    + Added DOS whll test of Borland Make file generation using bcc32c (embarcadero design)
-    - clang-bcc fails for C-link using bcc32c (_main not found)
+    * + Now act as front-end for both C and C++ compiler
+    * + back-end call and parameter transform only for bcc32c
+    * + Added MINGW shell test of MSYS make file generation using clang-bcc as front-end
+    * + Added DOS whll test of Borland Make file generation using bcc32c (embarcadero design)
+    * - clang-bcc fails for C-link using bcc32c (_main not found)
 
-    # Version 0.1
+# Version 0.1
 
-    * + First pass of using clang-bcc.exe as compiler front-end to have cmake generate an "Embarcadero" build environment
-    * - No parameter adaption yet implemented.
-    * - Atual build with generated environment and clang-bcc.exe as compiler/linker not yet done.
+  * + First pass of using clang-bcc.exe as compiler front-end to have cmake generate an "Embarcadero" build environment
+  * - No parameter adaption yet implemented.
+  * - Atual build with generated environment and clang-bcc.exe as compiler/linker not yet done.
 
-    ## Version 0.2 status for MINGW console test generating MSYS make files
+## Version 0.2 status for MINGW console test generating MSYS make files
 
-    * The test is invoked with project memner mingw_test.sh in test sub-folder of build folder.
+  * The test is invoked with project memner mingw_test.sh in test sub-folder of build folder.
 
     kjell-olovhogdahl@KJELL-OLOVHA74E MINGW64 /c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test
     $ ./mingw_test.sh
@@ -87,7 +87,7 @@
     $
 
 
-    1. clang-bcc fails to compile C idnetification file CMakeCCompilerId.c (impersonating as clang)
+  1. clang-bcc fails to compile C idnetification file CMakeCCompilerId.c (impersonating as clang)
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:CMake <<compiler identification>> call detected
@@ -111,9 +111,9 @@
     [[CLANG-BCC]]:COMPILER END
     [[CLANG-BCC]]:END
 
-    * TODO: Call correct back-end clang compiler for C-compilation.
+  * TODO: Call correct back-end clang compiler for C-compilation.
 
-    2. clang-bcc succeeds to compile C++ identification CMakeCXXCompilerId.cpp (impersonating as clang)
+  2. clang-bcc succeeds to compile C++ identification CMakeCXXCompilerId.cpp (impersonating as clang)
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc/clang-bcc.exe CMakeCXXCompilerId.cpp
@@ -136,7 +136,7 @@
 
     Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
 
-    3. clang-cpp succeeds to compile C test file (calling back-end bcc32c)
+  3. clang-cpp succeeds to compile C test file (calling back-end bcc32c)
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -o CMakeFiles/cmTC_214da.dir/testCCompiler.c.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc/CMakeFiles/CMakeTmp/testCCompiler.c
@@ -176,7 +176,7 @@
     [[CLANG-BCC]]:COMPILER END
     [[CLANG-BCC]]:END
 
-    4. clang-bcc succeeds to link C-compiled test code (using back-end bcc32c as linker)
+  4. clang-bcc succeeds to link C-compiled test code (using back-end bcc32c as linker)
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe CMakeFiles/cmTC_214da.dir/testCCompiler.c.obj -o cmTC_214da.exe
@@ -228,7 +228,7 @@
     [[CLANG-BCC]]:COMPILER END
     [[CLANG-BCC]]:END
 
-    5. clang-bcc succeeds to compile C ABI identification file CMakeCCompilerABI.c
+  5. clang-bcc succeeds to compile C ABI identification file CMakeCCompilerABI.c
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -o CMakeFiles/cmTC_8410f.dir/CMakeCCompilerABI.c.obj -c C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCCompilerABI.c
@@ -268,7 +268,7 @@
     [[CLANG-BCC]]:COMPILER END
     [[CLANG-BCC]]:END
 
-    6. clang-bcc succeeds to link the C ABI identification CMakeCCompilerABI.c.obj to exe
+  6. clang-bcc succeeds to link the C ABI identification CMakeCCompilerABI.c.obj to exe
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe CMakeFiles/cmTC_8410f.dir/CMakeCCompilerABI.c.obj -o cmTC_8410f.exe
@@ -320,7 +320,7 @@
     [[CLANG-BCC]]:COMPILER END
     [[CLANG-BCC]]:END
 
-    7. clang-bcc succeeds to compile test C++ file testCXXCompiler.cxx (using back-end bcc32c)
+  7. clang-bcc succeeds to compile test C++ file testCXXCompiler.cxx (using back-end bcc32c)
 
     [[CLANG-BCC]]:START
     [CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -o CMakeFiles/cmTC_caac7.dir/testCXXCompiler.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
@@ -362,7 +362,7 @@
     [[CLANG-BCC]]:COMPILER END
     [[CLANG-BCC]]:END
 
-    6. clang-bcc fails to link the C++ test file object code
+  6. clang-bcc fails to link the C++ test file object code
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -Wl,--whole-archive CMakeFiles/cmTC_caac7.dir/objects.a -Wl,--no-whole-archive -o cmTC_caac7.exe -Wl,--major-image-version,0,--minor-image-version,0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -431,7 +431,7 @@
 
     * TODO: Figure out why cmake first calls to generate "CMakeFiles/cmTC_caac7.dir/testCXXCompiler.cxx.obj" but then asks to link "CMakeFiles/cmTC_caac7.dir/objects.a"?
 
-    7. clang-bcc succeeds to compile the C++ ABI detection source CMakeCXXCompilerABI.cpp
+  7. clang-bcc succeeds to compile the C++ ABI detection source CMakeCXXCompilerABI.cpp
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -o CMakeFiles/cmTC_9068c.dir/CMakeCXXCompilerABI.cpp.obj -c C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp
@@ -473,7 +473,7 @@
     [[CLANG-BCC]]:COMPILER END
     [[CLANG-BCC]]:END
 
-    8. clang-bcc fails to link the C++ ABI detection exe
+  8. clang-bcc fails to link the C++ ABI detection exe
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -v -Wl,--whole-archive CMakeFiles/cmTC_9068c.dir/objects.a -Wl,--no-whole-archive -o cmTC_9068c.exe -Wl,--major-image-version,0,--minor-image-version,0
@@ -533,7 +533,7 @@
 
     * TODO: Figure out why cmake first calls to generate "CMakeFiles/cmTC_9068c.dir/CMakeCXXCompilerABI.cpp.obj" but then asks to link "CMakeFiles/cmTC_9068c.dir/objects.a"?
 
-    9. clang-bcc fails to pass clang c++14 switch to back-end bcb32c (diabsling cmake to determine c++14 support)
+  9. clang-bcc fails to pass clang c++14 switch to back-end bcb32c (diabsling cmake to determine c++14 support)
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -std=c++14 -o CMakeFiles/cmTC_64b1f.dir/feature_tests.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc/CMakeFiles/feature_tests.cxx
@@ -578,7 +578,7 @@
 
     * TODO: Fails transformation of passsed clang c++14 to bcb32c (or pass suatble parameter at have bcb32c fail appropriatly)
 
-    10. clang-bcc fails to link C++ compiler option build
+  10. clang-bcc fails to link C++ compiler option build
 
     [[CLANG-BCC]]:START
     [[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -Wl,--whole-archive CMakeFiles/cmTC_64b1f.dir/objects.a -Wl,--no-whole-archive -o cmTC_64b1f.exe -Wl,--major-image-version,0,--minor-image-version,0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -645,4 +645,4 @@
     [[CLANG-BCC]]:COMPILER END
     [[CLANG-BCC]]:END
 
-    * TODO: Figure out why cmake first calls to generate "CMakeFiles/cmTC_9068c.dir/CMakeCXXCompilerABI.cpp.obj" but then asks to link "CMakeFiles/cmTC_9068c.dir/objects.a"?
+  * TODO: Figure out why cmake first calls to generate "CMakeFiles/cmTC_9068c.dir/CMakeCXXCompilerABI.cpp.obj" but then asks to link "CMakeFiles/cmTC_9068c.dir/objects.a"?
