@@ -198,7 +198,7 @@ private:
 		std::string sCmdLine(ssCmdLine.str().c_str()); // copy to provide stack instance to API
 
 		std::cout << "\n[[CLANG-BCC]]:CreateProcess=" << sCmdLine;
-		std::cout << std::flush; // Flush our entries to stdout before letting child process do its stuff
+		std::cout << "\n" << std::flush; // Flush our entries to stdout before letting child process do its stuff
 		// Start the child process. 
 		if (!CreateProcess(
 			NULL,   // No module name (use command line)
@@ -248,29 +248,64 @@ void Compiler::execute(Parameters parameters) {
 	std::cout << "\n[[CLANG-BCC]]:COMPILER END";
 }
 
-enum e_BccCompiler {
-	e_BccCompiler_Undefined
-	, e_BccCompiler_bcc32
-	, e_BccCompiler_bcc32c
-	, e_BccCompiler_bcc64
-	, e_BccCompiler_Unknown
-};
-
-Path pathToCompiler(e_BccCompiler compiler_id) {
+Path pathToCompiler(e_CompilerId compiler_id) {
 	Path result("#unknown_compiler#");
 	switch (compiler_id) {
-	case e_BccCompiler_bcc32:
-		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32.exe)"; // Hard code to use embarcadero compiler to see how cmake reacts?
+	case eCompilerId_clang:
+		result = R"(clang++)"; 
+		break;
+	case eCompilerId_bcc32:
+		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32.exe)";
 		break;
 
-	case e_BccCompiler_bcc32c:
-		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe)"; // Hard code to use embarcadero compiler to see how cmake reacts?
+	case eCompilerId_bcc32c:
+		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe)";
 		break;
-	case e_BccCompiler_bcc64:
-		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc64.exe)"; // Hard code to use embarcadero compiler to see how cmake reacts?
+	case eCompilerId_bcc64:
+		result = R"(C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc64.exe)";
 		break;
 	}
 
+	return result;
+}
+
+bool isCmakeComplierIdCall(Parameters parameters) {
+	bool result = false;
+	result = std::any_of(std::begin(parameters), std::end(parameters), [](Parameter p) {
+		return (    (p.find("CMakeCXXCompilerId") != std::string::npos)
+			     || (p.find("CMakeCCompilerId.c") != std::string::npos));
+	});
+	return result;
+}
+
+bool isCmakeComplierABIIdCall(Parameters parameters) {
+	bool result = false;
+	result = std::any_of(std::begin(parameters), std::end(parameters), [](Parameter p) {
+		return (    (p.find("CMakeCXXCompilerABI") != std::string::npos)
+			     || (p.find("CMakeCCompilerABI.c") != std::string::npos));
+	});
+	return result;
+}
+
+enum e_CallMode {
+	eCallMode_Undefined
+	, e_CallMode_CMakeCompilerIdCall
+	, e_CallMode_CmakeCompilerOutABIIdCall
+	, e_CallMode_BuildEnvrionmentCall
+	, e_CallMode_Unknown
+};
+
+e_CallMode detectedCallMode(Parameters parameters) {
+	e_CallMode result = eCallMode_Undefined;
+	if (isCmakeComplierIdCall(parameters)) {
+		result = e_CallMode_CMakeCompilerIdCall;
+	}
+	else if (isCmakeComplierABIIdCall(parameters)) {
+		result = e_CallMode_CmakeCompilerOutABIIdCall;
+	}
+	else {
+		result = e_CallMode_BuildEnvrionmentCall;
+	}
 	return result;
 }
 
@@ -281,44 +316,63 @@ Path pathToCompiler(e_BccCompiler compiler_id) {
 
 		std::string sOurPath(argv[0]); // Path to us
 		Parameters parameters(&argv[1], &argv[argc]); // skip argv[0] which is the path to "us" 
-		//e_BccCompiler bcc_compiler = e_BccCompiler_bcc32;
-		e_BccCompiler bcc_compiler = e_BccCompiler_bcc32c;
-		//e_BccCompiler bcc_compiler = e_BccCompiler_bcc64;
-		Path compiler_path(pathToCompiler(bcc_compiler)); // default
+		//const e_CompilerId bcc_compiler_id = eCompilerId_bcc32;
+		const e_CompilerId bcc_compiler_id = eCompilerId_bcc32c;
+		//const e_CompilerId bcc_compiler_id = eCompilerId_bcc64;
+
+		const e_CompilerId impersonated_compiler_id = eCompilerId_clang; // Impersoante as clang compiler
+		const e_CompilerId abi_identification_compiler_id = bcc_compiler_id; // use bcc compiler for cmake abi identification call
+		const e_CompilerId build_compiler_id = bcc_compiler_id; // use bcc compiler as actual compiler (build environment compiler call)
+
+		e_CompilerId actual_compiler_id = eCompilerId_Undefined;
+		switch (detectedCallMode(parameters)) {
+		case e_CallMode_CMakeCompilerIdCall:
+			// Select compiler to use for cmake compiler identification.
+			// This will be the compielr we trick cmake to think that "we" are (i.e., we will  impersonate a fron-end to this compiler)
+			actual_compiler_id = impersonated_compiler_id;
+			std::cout << "\n[[CLANG-BCC]]:CMake <<compiler identification>> call detected";
+			break;
+		case e_CallMode_CmakeCompilerOutABIIdCall:
+			// Select compiler to use for cmake compiler output ABI identification
+			actual_compiler_id = abi_identification_compiler_id;
+			std::cout << "\n[[CLANG-BCC]]:CMake <<compiler ABI output identification>> call detected";
+			break;
+		default:
+			// Build environment compiler call
+			actual_compiler_id = bcc_compiler_id;
+			std::cout << "\n[[CLANG-BCC]]:Build call asumed";
+			break;
+		}
+		std::cout << "\n[[CLANG-BCC]]:Decided to use actual compiler " << pathToCompiler(actual_compiler_id);
+
+		// Force a compiler if set for developemnt test purposes
+		{
+			e_CompilerId forced_compiler_id = eCompilerId_Undefined; // Do not force the compiler to use
+			//e_CompilerId forced_compiler = eCompilerId_bcc32c; // Development test
+
+			if (forced_compiler_id > eCompilerId_Undefined && forced_compiler_id < eCompilerId_Unknown) {
+				if (forced_compiler_id != actual_compiler_id) {
+					actual_compiler_id = forced_compiler_id;
+					std::cout << "\n[[CLANG-BCC]]:Forced Compiler Mode: Actual compiler forced to ==> " << pathToCompiler(actual_compiler_id);
+				}
+			}
+		}
+
+		Path actual_compiler_path(pathToCompiler(actual_compiler_id));
 
 		// Process non-compiler parameters (set test purpose parameters)
 		{
 			if (parameters.size() >= 2) {
 				if (parameters[0] == "---") {
-					compiler_path = parameters[1]; // E.g., as in \n[[CLANG-BCC]] --- bcc32c
+					actual_compiler_path = parameters[1]; // Override actual compiler, E.g., as in call "clang-bcc --- bcc32c"
 					parameters.erase(parameters.begin()); // strip-off non-compiler parameter
 					parameters.erase(parameters.begin()); // strip-off non-compiler parameter
 				}
 			}
-
-			if (parameters.size() == 1) {
-				if (parameters[0] == "CMakeCXXCompilerId.cpp") {
-					// Asume we are called by cmake to compile the compler identification source file (e.g., CMakeCXXCompilerId.cpp)
-					compiler_path = "clang++.exe"; // Use clang to fool cmake "we" are a clang compiler
-					std::cout << "\n[[CLANG-BCC]]:CMake compiler identification compilation detected";
-					std::cout << "\n[[CLANG-BCC]]:Preparing to use actual compiler ==> " << compiler_path;
-				}
-			}
 		}
 
-		e_BccCompiler forced_compiler = e_BccCompiler_Undefined; // Do not force the compiler to use
-		//e_BccCompiler forced_compiler = e_BccCompiler_bcc32c; // Development test
-
-		if (forced_compiler > e_BccCompiler_Undefined && forced_compiler < e_BccCompiler_Unknown) {
-			Path forced_compiler_path = pathToCompiler(forced_compiler);
-			if (forced_compiler_path != compiler_path) {
-				compiler_path = forced_compiler_path;
-				std::cout << "\n[[CLANG-BCC]]:Forced Compiler Mode: Actual compiler forced to ==> "  << forced_compiler_path;
-			}
-		}
-
-		Compiler actual_compiler{ compiler_path };
-		actual_compiler.execute(toActualCompilerParameters(parameters));
+		Compiler actual_compiler{ actual_compiler_path };
+		actual_compiler.execute(fromCompilerParameters<impersonated_compiler_id>::to(actual_compiler_id,parameters));
 	}
 	catch (std::runtime_error& e) {
 		std::cout << "\n[[CLANG-BCC]]: Failed - Exception = " << e.what();
