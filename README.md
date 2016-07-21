@@ -10,12 +10,14 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 
 ## Synopsis
 
->C:\...\GitHub\clang-bcc\build
->│   CMakeLists.txt
->│   main.cpp
->│
->└───build
->    │   clang-bcc.exe  // front-end to be used by cmake to engage Embarcadero bcc32, bcc32c or bcc64 "behind the scenes"
+
+    C:\...\GitHub\clang-bcc\build
+    │   CMakeLists.txt
+    │   main.cpp
+    │
+    └───build
+        │   clang-bcc.exe  // front-end to be used by cmake to engage Embarcadero bcc32, bcc32c or bcc64 "behind the scenes"
+
 
 * Place clang-bcc.exe short-cut in build folder below the cmake folder.
 * Use CMake to generate tool chain for your project using clang-bcc.exe as compiler.
@@ -50,9 +52,9 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 
 # Version 0.1
 
-* + First pass of using clang-bcc.exe as compiler front-end to have cmake generate an "Embarcadero" build environment
-* - No parameter adaption yet implemented.
-* - Atual build with generated environment and clang-bcc.exe as compiler/linker not yet done.
+* Use CMake to generate clang tool chain for your project using clang-bcc.exe as compiler.
+* clang-bcc.exe will transform passed options to the "behind the scene" Embarcadero Compiler
+* cmake will be able to use clang-bcc.exe to identify compiler and linker abilities and generate a build build environment
 
 ## Version 0.2 status for MINGW console test generating MSYS make files
 
@@ -362,7 +364,7 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 	[[CLANG-BCC]]:COMPILER END
 	[[CLANG-BCC]]:END
 
-6. clang-bcc fails to link the C++ test file object code
+8. clang-bcc fails to link the C++ test file object code
 
 	[[CLANG-BCC]]:START
 	[[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -Wl,--whole-archive CMakeFiles/cmTC_caac7.dir/objects.a -Wl,--no-whole-archive -o cmTC_caac7.exe -Wl,--major-image-version,0,--minor-image-version,0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -431,7 +433,7 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 
 * TODO: Figure out why cmake first calls to generate "CMakeFiles/cmTC_caac7.dir/testCXXCompiler.cxx.obj" but then asks to link "CMakeFiles/cmTC_caac7.dir/objects.a"?
 
-7. clang-bcc succeeds to compile the C++ ABI detection source CMakeCXXCompilerABI.cpp
+9. clang-bcc succeeds to compile the C++ ABI detection source CMakeCXXCompilerABI.cpp
 
 	[[CLANG-BCC]]:START
 	[[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -o CMakeFiles/cmTC_9068c.dir/CMakeCXXCompilerABI.cpp.obj -c C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp
@@ -473,7 +475,7 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 	[[CLANG-BCC]]:COMPILER END
 	[[CLANG-BCC]]:END
 
-8. clang-bcc fails to link the C++ ABI detection exe 
+10. clang-bcc fails to link the C++ ABI detection exe 
 
 	[[CLANG-BCC]]:START
 	[[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -v -Wl,--whole-archive CMakeFiles/cmTC_9068c.dir/objects.a -Wl,--no-whole-archive -o cmTC_9068c.exe -Wl,--major-image-version,0,--minor-image-version,0
@@ -533,7 +535,7 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 
 * TODO: Figure out why cmake first calls to generate "CMakeFiles/cmTC_9068c.dir/CMakeCXXCompilerABI.cpp.obj" but then asks to link "CMakeFiles/cmTC_9068c.dir/objects.a"?
 
-9. clang-bcc fails to pass clang c++14 switch to back-end bcb32c (diabsling cmake to determine c++14 support)
+11. clang-bcc fails to pass clang c++14 switch to back-end bcb32c (diabsling cmake to determine c++14 support)
 
 	[[CLANG-BCC]]:START
 	[[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -std=c++14 -o CMakeFiles/cmTC_64b1f.dir/feature_tests.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc/CMakeFiles/feature_tests.cxx
@@ -578,7 +580,7 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 
 * TODO: Fails transformation of passsed clang c++14 to bcb32c (or pass suatble parameter at have bcb32c fail appropriatly)
 
-10. clang-bcc fails to link C++ compiler option build 
+12. clang-bcc fails to link C++ compiler option build 
 
 	[[CLANG-BCC]]:START
 	[[CLANG-BCC]]:C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -Wl,--whole-archive CMakeFiles/cmTC_64b1f.dir/objects.a -Wl,--no-whole-archive -o cmTC_64b1f.exe -Wl,--major-image-version,0,--minor-image-version,0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
