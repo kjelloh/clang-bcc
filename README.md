@@ -4,57 +4,137 @@ A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the 
 
 ## Summary
 
-* The idea when this project was created was to "fool" cmake it was using a clang compiler while behind the scene the Embarcadero RAD Studio C++ compiler was executed.
-* The motivation was to be able to adopt Microsoft GSL library for teh Embarcadero RAD STudio C++ compilers.
-* As it turns out cmake actually identifies the compiler from teh content of a compiled C++-file so it still identifies the Embarcadero compiler.
-* The clang-bcc frontend is thus not a good name and this project should be renamed.
+* This project is an attempt to create a "clang front-end" to Embarcadero bcc compilers for Cmake generation of build environments
+* The idea is to "trick" CMake into identifying clang-bcc as a clang compiler while in the background it actually invokes a bcc compiler.
+* The clang-bcc front-end accomplish this by impersonating as a clang compiler and transform clang parameters to bcc parameters behind-the-scene 
+* The motivation was to be able to adopt Microsoft GSL library for the Embarcadero RAD Studio C++ compilers (bcc32, bcc32c and bcc64.
 
 ## Synopsis
 
-    >C:\...\GitHub\clang-bcc\build
-    >│   CMakeLists.txt
-    >│   main.cpp
-    >│
-    >└───build
-    >    │   clang-bcc.exe  // front-end to be used by cmake to engage Embarcadero bcc32, bcc32c or bcc64 "behind the scenes"
+* Use clang-bcc as your clang compiler when calling CMake to generate build envuronment
+
+```
+    C:\...\<your cpp-project>\build
+    │   CMakeLists.txt
+    │   file1.cpp
+    │   file2.cpp
+    │   file3.cpp
+    │   ...
+    └───build
+        │   clang-bcc.exe  // front-end to be used by cmake to engage Embarcadero bcc32, bcc32c or bcc64 "behind the scenes"
+```
 
 * Place clang-bcc.exe short-cut in build folder below the cmake folder.
 * Use CMake to generate tool chain for your project using clang-bcc.exe as compiler.
+```
+    >cmake .. -G"MSYS Makefiles" -DCMAKE_CXX_COMPILER=clang-bcc.exe -DCMAKE_C_COMPILER=clang-bcc.exe
+```
 * clang-bcc will "fool" cmake into beleiving it is using a clang compiler (see "How clang-bcc tricks cmake to beleive it is using a clang compiler" below)
 * clang-bcc.exe will transform passed clang compiler options to the "behind the scene" Embarcadero Compiler
 * cmake will thus be able to use clang-bcc.exe to generate a build build environment that will call Embarcadero C++ compilers for build and link.
 * clang-bcc.exe acts as both C and C++ front-end (calling back-end actual compiler with apropriate parameters to compile or link correctly)
 
-## How clang-bcc tricks cmake to beleive it is using a clang compiler
+### How clang-bcc tricks cmake to beleive it is using a clang compiler
 
-  1. When cmake as first step compiles its compiler identification c++ file (CMakeCXXCompilerId.cpp) it provides no compiler options.
-
+1. When cmake as first step compiles its compiler identification c++ file (CMakeCXXCompilerId.cpp) it provides no compiler options.
     * When clang-bcc detects it is being called to compile Cmake spedial source files for compiler detection - it then calls clang to generate clang identification.
     * In this way cmake will detect that the provided cpp-file was in fact compiled with clang and this it asumes clang options to be used.
 
-  2. Cmake will then test if clang-bcc works with actual options.
-
+2. Cmake will then test if clang-bcc works with actual options.
     * When clang-bcc is called with options for compilation it will call an Embarcadero C++ compiler (transforming provided options to Embarcadero Compiler options to compile)
 
-  3. Cmake will then test if clang-bcc may be used to link the compiled binary.
-
+3. Cmake will then test if clang-bcc may be used to link the compiled binary.
     * When clang-bcc is called with options for linking it will call an Embarcadero C++ compiler (transforming provided options to Embarcadero Compiler options to link)
 
-#Version 0.2
+# Project
 
-  * + Now act as front-end for both C and C++ compiler
-  * + back-end call and parameter transform only for bcc32c
-  * + Added MINGW shell test of MSYS make file generation using clang-bcc as front-end
-  * + Added DOS whll test of Borland Make file generation using bcc32c (embarcadero design)
-  * - clang-bcc fails for C-link using bcc32c (_main not found)
+## Project files
+```
+C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc>tree /F
+Folder PATH listing
+Volume serial number is D49B-BB89
+C:.
+│   .gitignore
+│   LICENSE
+│   README.md
+│
+└───build
+    │   CMakeLists.txt
+    │   Helpers.cpp
+    │   Helpers.h
+    │   main.cpp
+    │   parameters.cpp
+    │   parameters.h
+    │   Process.cpp
+    │   Process.h
+    │
 
-# Version 0.1
+```
+## Builds with Visual Studio 2015
 
-  * + First pass of using clang-bcc.exe as compiler front-end to have cmake generate an "Embarcadero" build environment
-  * - No parameter adaption yet implemented.
-  * - Atual build with generated environment and clang-bcc.exe as compiler/linker not yet done.
+* Execute provided DOS command shell vs_me.cmd to create Visual Stuido build environment
 
-## Version 0.2 status for MINGW console test generating MSYS make files
+```
+    │   vs_me.cmd
+    │
+    ├───build_vs
+    │   │   ALL_BUILD.vcxproj
+    │   │   ALL_BUILD.vcxproj.filters
+    │   │   clang-bcc.sln
+    │   │   clang-bcc.VC.db
+    │   │   clang-bcc.vcxproj
+    │   │   clang-bcc.vcxproj.filters
+    │   │   clang-bcc.vcxproj.user
+    │   │   CMakeCache.txt
+    │   │   cmake_install.cmake
+    │   │   ZERO_CHECK.vcxproj
+    │   │   ZERO_CHECK.vcxproj.filters
+    │   │
+    │   ├───Debug
+    │           clang-bcc.exe
+``` 
+
+## Tests
+
+```
+    └───test
+        │   bcc32c_test.bat     // DOS command shell script to use CMake to generate bcc32c build environment
+        │   CmakeLists.txt
+        │   dummy_main.cpp
+        │   mingw_test.sh       // Linux shell script (e.g., MinGW shell) to use CMake to generate clang build environment using clang-bcc front-end
+        │
+        ├───build-bcc32c        // Bcc32c build folder (created by bcc32c_test.bat)
+        │   │   Makefile
+        │   │
+        │
+        └───build-clang-bcc     // clang-bcc build folder (generated by mingw_test.sh)
+            │   clang-bcc.exe
+
+```
+
+
+## Version 0.3
+
+* \+ Refactored to true RAII Porcess class (throws on failure to create compiler process)
+* \+ Refactored to have process execution call return an std::future with child process return value
+* \+ Refactored to use app namespace with sub-namespaces to isloate possible futire lib code (e.g. app::process::win32)
+* \- Does not yet work as a Cmake clang replacement (see logs below)
+
+## Version 0.2
+
+  * \+ Now act as front-end for both C and C++ compiler
+  * \+ back-end call and parameter transform only for bcc32c
+  * \+ Added MINGW shell test of MSYS make file generation using clang-bcc as front-end
+  * \+ Added DOS whll test of Borland Make file generation using bcc32c (embarcadero design)
+  * \- clang-bcc fails for C-link using bcc32c (_main not found)
+
+## Version 0.1
+
+  * \+ First pass of using clang-bcc.exe as compiler front-end to have cmake generate an "Embarcadero" build environment
+  * \- No parameter adaption yet implemented.
+  * \- Atual build with generated environment and clang-bcc.exe as compiler/linker not yet done.
+
+## Status for MINGW console test generating MSYS make files
 
   * The test is invoked with project memner mingw_test.sh in test sub-folder of build folder.
 ```
