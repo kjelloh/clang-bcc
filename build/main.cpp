@@ -74,7 +74,10 @@ int Compiler::execute(Parameters parameters) {
 Path pathToCompiler(e_CompilerId compiler_id) {
 	Path result("#unknown_compiler#");
 	switch (compiler_id) {
-	case eCompilerId_clang:
+	case eCompilerId_clang_c:
+		result = R"(clang)";
+		break;
+	case eCompilerId_clang_cpp:
 		result = R"(clang++)"; 
 		break;
 	case eCompilerId_bcc32:
@@ -92,16 +95,23 @@ Path pathToCompiler(e_CompilerId compiler_id) {
 	return result;
 }
 
-bool isCmakeComplierIdCall(Parameters parameters) {
+bool isSourceFileCall(const Parameter& source_file, const Parameters& parameters) {
 	bool result = false;
-	result = std::any_of(std::begin(parameters), std::end(parameters), [](Parameter p) {
-		return (    (p.find("CMakeCXXCompilerId") != std::string::npos)
-			     || (p.find("CMakeCCompilerId.c") != std::string::npos));
+	result = std::any_of(std::begin(parameters), std::end(parameters), [&source_file](Parameter p) {
+		return ((p.find(source_file) != std::string::npos));
 	});
 	return result;
 }
 
-bool isCmakeComplierABIIdCall(Parameters parameters) {
+bool isCmakeCComplierIdCall(const Parameters& parameters) {
+	return isSourceFileCall("CMakeCCompilerId",parameters);
+}
+
+bool isCmakeCXXComplierIdCall(const Parameters& parameters) {
+	return isSourceFileCall("CMakeCXXCompilerId", parameters);
+}
+
+bool isCmakeComplierABIIdCall(const Parameters& parameters) {
 	bool result = false;
 	result = std::any_of(std::begin(parameters), std::end(parameters), [](Parameter p) {
 		return (    (p.find("CMakeCXXCompilerABI") != std::string::npos)
@@ -112,7 +122,8 @@ bool isCmakeComplierABIIdCall(Parameters parameters) {
 
 enum e_CallMode {
 	eCallMode_Undefined
-	, e_CallMode_CMakeCompilerIdCall
+	, e_CallMode_CMakeCCompilerIdCall		// CMake Identify C compiler
+	, e_CallMode_CMakeCXXCompilerIdCall		// CMake Identify CPP copiler
 	, e_CallMode_CmakeCompilerOutABIIdCall
 	, e_CallMode_BuildEnvrionmentCall
 	, e_CallMode_Unknown
@@ -120,8 +131,11 @@ enum e_CallMode {
 
 e_CallMode detectedCallMode(Parameters parameters) {
 	e_CallMode result = eCallMode_Undefined;
-	if (isCmakeComplierIdCall(parameters)) {
-		result = e_CallMode_CMakeCompilerIdCall;
+	if (isCmakeCComplierIdCall(parameters)) {
+		result = e_CallMode_CMakeCCompilerIdCall;
+	}
+	else if (isCmakeCXXComplierIdCall(parameters)) {
+		result = e_CallMode_CMakeCXXCompilerIdCall;
 	}
 	else if (isCmakeComplierABIIdCall(parameters)) {
 		result = e_CallMode_CmakeCompilerOutABIIdCall;
@@ -144,8 +158,9 @@ e_CallMode detectedCallMode(Parameters parameters) {
 		// Log the call to us
 		// E.g., C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc\clang-bcc.exe -o CMakeFiles/cmTC_8228c.dir/testCXXCompiler.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
 		{
-			std::cout << "\n[[CLANG-BCC]]:" << sOurPath;
-			std::for_each(std::begin(parameters), std::end(parameters), [](const Parameter& p) {std::cout << " " << p;});
+			std::cout << "\n[[CLANG-BCC]]:Frontend = " << sOurPath;
+			std::cout << "\n[[CLANG-BCC]]:Impersonating clang/clang++ ";
+			std::for_each(std::begin(parameters), std::end(parameters), [](const Parameter& p) {std::cout << " " << p; });
 		}
 
 		// Hard code the bcc compiler to use as back-end
@@ -153,27 +168,39 @@ e_CallMode detectedCallMode(Parameters parameters) {
 		const e_CompilerId bcc_compiler_id = eCompilerId_bcc32c;
 		//const e_CompilerId bcc_compiler_id = eCompilerId_bcc64;
 
-		const e_CompilerId impersonated_compiler_id = eCompilerId_clang; // Impersoante as clang compiler
+		const e_CompilerId impersonated_C_compiler_id = eCompilerId_clang_c; // Impersonate as clang C-compiler
+		const e_CompilerId impersonated_CXX_compiler_id = eCompilerId_clang_cpp; // Impersonate as clang Cpp-compiler
 		const e_CompilerId abi_identification_compiler_id = bcc_compiler_id; // use bcc compiler for Cmake abi identification call
 		const e_CompilerId build_compiler_id = bcc_compiler_id; // use bcc compiler as actual compiler (build environment compiler call)
 
 		// Decide on back-end compiler to use depending on identified call
+		e_CompilerId impersonated_compiler_id = eCompilerId_Undefined;
 		e_CompilerId backend_compiler_id = eCompilerId_Undefined;
 		{
 			switch (detectedCallMode(parameters)) {
-			case e_CallMode_CMakeCompilerIdCall:
+			case e_CallMode_CMakeCCompilerIdCall:
 				// Select compiler to use for cmake compiler identification.
 				// This will be the compielr we trick cmake to think that "we" are (i.e., we will  impersonate a fron-end to this compiler)
+				impersonated_compiler_id = impersonated_C_compiler_id;
 				backend_compiler_id = impersonated_compiler_id;
-				std::cout << "\n[[CLANG-BCC]]:CMake <<compiler identification>> call detected";
+				std::cout << "\n[[CLANG-BCC]]: CMake C-compiler identification call detected";
+				break;
+			case e_CallMode_CMakeCXXCompilerIdCall:
+				// Select compiler to use for cmake compiler identification.
+				// This will be the compielr we trick cmake to think that "we" are (i.e., we will  impersonate a fron-end to this compiler)
+				impersonated_compiler_id = impersonated_CXX_compiler_id;
+				backend_compiler_id = impersonated_compiler_id;
+				std::cout << "\n[[CLANG-BCC]]: CMake CPP-compiler identification call detected";
 				break;
 			case e_CallMode_CmakeCompilerOutABIIdCall:
 				// Select compiler to use for cmake compiler output ABI identification
+				impersonated_compiler_id = impersonated_CXX_compiler_id;
 				backend_compiler_id = abi_identification_compiler_id;
-				std::cout << "\n[[CLANG-BCC]]:CMake <<compiler ABI output identification>> call detected";
+				std::cout << "\n[[CLANG-BCC]]:CMake << Compiler ABI output identification>> call detected";
 				break;
 			default:
-				// Build environment compiler call
+				// Primary Build environment compiler call (clang++ front-end and bcc back-end)
+				impersonated_compiler_id = impersonated_CXX_compiler_id;
 				backend_compiler_id = bcc_compiler_id;
 				std::cout << "\n[[CLANG-BCC]]:Build call asumed";
 				break;
@@ -213,10 +240,11 @@ e_CallMode detectedCallMode(Parameters parameters) {
 			// result = backend_compiler.execute(fromCompilerParameters<impersonated_compiler_id>::to(backend_compiler_id, parameters));
 		}
 
-		// Engage the back-end compiler with transformed parameters
+		// Invoke the back-end compiler with transformed parameters
 		{
 			Compiler backend_compiler{ backend_compiler_path };
-			result = backend_compiler.execute(fromCompilerParameters<impersonated_compiler_id>::to(backend_compiler_id, parameters));
+			// Transform parameters impersonating as clang CPP compiler (fingers crossed clang C-compiler parameters does not deviate to much?)
+			result = backend_compiler.execute(fromCompilerParameters<eCompilerId_clang_cpp>::to(backend_compiler_id, parameters));
 		}		
 	}
 	catch (std::runtime_error& e) {

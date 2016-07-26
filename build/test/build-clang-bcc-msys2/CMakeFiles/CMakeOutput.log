@@ -47,30 +47,30 @@ The CXX compiler identification is Clang, found in "C:/Users/kjell-olovhogdahl/D
 Determining if the C compiler works passed with the following output:
 Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_c3a82/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c3a82.dir/build.make CMakeFiles/cmTC_c3a82.dir/build
+Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_f7b4b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f7b4b.dir/build.make CMakeFiles/cmTC_f7b4b.dir/build
 make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c3a82.dir/testCCompiler.c.obj
-/C/msys64/mingw64/bin/gcc.exe     -o CMakeFiles/cmTC_c3a82.dir/testCCompiler.c.obj   -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_c3a82.exe
-/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_c3a82.dir/objects.a
-/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_c3a82.dir/objects.a "CMakeFiles/cmTC_c3a82.dir/testCCompiler.c.obj" 
-/C/msys64/mingw64/bin/gcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_c3a82.dir/objects.a -Wl,--no-whole-archive  -o cmTC_c3a82.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+Building C object CMakeFiles/cmTC_f7b4b.dir/testCCompiler.c.obj
+/C/msys64/mingw64/bin/gcc.exe     -o CMakeFiles/cmTC_f7b4b.dir/testCCompiler.c.obj   -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_f7b4b.exe
+/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_f7b4b.dir/objects.a
+/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_f7b4b.dir/objects.a "CMakeFiles/cmTC_f7b4b.dir/testCCompiler.c.obj" 
+/C/msys64/mingw64/bin/gcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_f7b4b.dir/objects.a -Wl,--no-whole-archive  -o cmTC_f7b4b.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
 make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_53100/fast"
-/usr/bin/make -f CMakeFiles/cmTC_53100.dir/build.make CMakeFiles/cmTC_53100.dir/build
+Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_37ea4/fast"
+/usr/bin/make -f CMakeFiles/cmTC_37ea4.dir/build.make CMakeFiles/cmTC_37ea4.dir/build
 make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_53100.dir/CMakeCCompilerABI.c.obj
-/C/msys64/mingw64/bin/gcc.exe     -o CMakeFiles/cmTC_53100.dir/CMakeCCompilerABI.c.obj   -c /C/msys64/mingw64/share/cmake-3.6/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_53100.exe
-/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_53100.dir/objects.a
-/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_53100.dir/objects.a "CMakeFiles/cmTC_53100.dir/CMakeCCompilerABI.c.obj" 
-/C/msys64/mingw64/bin/gcc.exe      -v -Wl,--whole-archive CMakeFiles/cmTC_53100.dir/objects.a -Wl,--no-whole-archive  -o cmTC_53100.exe -Wl,--major-image-version,0,--minor-image-version,0   
+Building C object CMakeFiles/cmTC_37ea4.dir/CMakeCCompilerABI.c.obj
+/C/msys64/mingw64/bin/gcc.exe     -o CMakeFiles/cmTC_37ea4.dir/CMakeCCompilerABI.c.obj   -c /C/msys64/mingw64/share/cmake-3.6/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_37ea4.exe
+/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_37ea4.dir/objects.a
+/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_37ea4.dir/objects.a "CMakeFiles/cmTC_37ea4.dir/CMakeCCompilerABI.c.obj" 
+/C/msys64/mingw64/bin/gcc.exe      -v -Wl,--whole-archive CMakeFiles/cmTC_37ea4.dir/objects.a -Wl,--no-whole-archive  -o cmTC_37ea4.exe -Wl,--major-image-version,0,--minor-image-version,0   
 Using built-in specs.
 COLLECT_GCC=C:\msys64\mingw64\bin\gcc.exe
 COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/lto-wrapper.exe
@@ -80,8 +80,8 @@ Thread model: posix
 gcc version 5.4.0 (Rev1, Built by MSYS2 project) 
 COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/bin/
 LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_53100.exe' '-mtune=generic' '-march=x86-64'
- C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/liblto_plugin-0.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\KJELL-~1\AppData\Local\Temp\ccJLuzJn.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_53100.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../.. --whole-archive CMakeFiles/cmTC_53100.dir/objects.a --no-whole-archive --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_37ea4.exe' '-mtune=generic' '-march=x86-64'
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/liblto_plugin-0.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\KJELL-~1\AppData\Local\Temp\ccP3YIHk.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_37ea4.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../.. --whole-archive CMakeFiles/cmTC_37ea4.dir/objects.a --no-whole-archive --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtend.o
 make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
 
 
@@ -89,15 +89,15 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld\.exe|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_53100/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_53100.dir/build.make CMakeFiles/cmTC_53100.dir/build]
+  ignore line: [Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_37ea4/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_37ea4.dir/build.make CMakeFiles/cmTC_37ea4.dir/build]
   ignore line: [make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_53100.dir/CMakeCCompilerABI.c.obj]
-  ignore line: [/C/msys64/mingw64/bin/gcc.exe     -o CMakeFiles/cmTC_53100.dir/CMakeCCompilerABI.c.obj   -c /C/msys64/mingw64/share/cmake-3.6/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_53100.exe]
-  ignore line: [/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_53100.dir/objects.a]
-  ignore line: [/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_53100.dir/objects.a "CMakeFiles/cmTC_53100.dir/CMakeCCompilerABI.c.obj" ]
-  ignore line: [/C/msys64/mingw64/bin/gcc.exe      -v -Wl,--whole-archive CMakeFiles/cmTC_53100.dir/objects.a -Wl,--no-whole-archive  -o cmTC_53100.exe -Wl,--major-image-version,0,--minor-image-version,0   ]
+  ignore line: [Building C object CMakeFiles/cmTC_37ea4.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [/C/msys64/mingw64/bin/gcc.exe     -o CMakeFiles/cmTC_37ea4.dir/CMakeCCompilerABI.c.obj   -c /C/msys64/mingw64/share/cmake-3.6/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_37ea4.exe]
+  ignore line: [/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_37ea4.dir/objects.a]
+  ignore line: [/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_37ea4.dir/objects.a "CMakeFiles/cmTC_37ea4.dir/CMakeCCompilerABI.c.obj" ]
+  ignore line: [/C/msys64/mingw64/bin/gcc.exe      -v -Wl,--whole-archive CMakeFiles/cmTC_37ea4.dir/objects.a -Wl,--no-whole-archive  -o cmTC_37ea4.exe -Wl,--major-image-version,0,--minor-image-version,0   ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=C:\msys64\mingw64\bin\gcc.exe]
   ignore line: [COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/lto-wrapper.exe]
@@ -114,13 +114,13 @@ Parsed C implicit link information from above output:
   ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../lib/]
   ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/]
   ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_53100.exe' '-mtune=generic' '-march=x86-64']
-  link line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/liblto_plugin-0.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\KJELL-~1\AppData\Local\Temp\ccJLuzJn.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_53100.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../.. --whole-archive CMakeFiles/cmTC_53100.dir/objects.a --no-whole-archive --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtend.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_37ea4.exe' '-mtune=generic' '-march=x86-64']
+  link line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/liblto_plugin-0.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\KJELL-~1\AppData\Local\Temp\ccP3YIHk.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_37ea4.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../.. --whole-archive CMakeFiles/cmTC_37ea4.dir/objects.a --no-whole-archive --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtend.o]
     arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/collect2.exe] ==> ignore
     arg [-plugin] ==> ignore
     arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/liblto_plugin-0.dll] ==> ignore
     arg [-plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=C:\Users\KJELL-~1\AppData\Local\Temp\ccJLuzJn.res] ==> ignore
+    arg [-plugin-opt=-fresolution=C:\Users\KJELL-~1\AppData\Local\Temp\ccP3YIHk.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_eh] ==> ignore
@@ -142,7 +142,7 @@ Parsed C implicit link information from above output:
     arg [i386pep] ==> ignore
     arg [-Bdynamic] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_53100.exe] ==> ignore
+    arg [cmTC_37ea4.exe] ==> ignore
     arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o] ==> ignore
     arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/crtbegin.o] ==> ignore
     arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0]
@@ -152,7 +152,7 @@ Parsed C implicit link information from above output:
     arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/lib]
     arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../..] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../..]
     arg [--whole-archive] ==> ignore
-    arg [CMakeFiles/cmTC_53100.dir/objects.a] ==> ignore
+    arg [CMakeFiles/cmTC_37ea4.dir/objects.a] ==> ignore
     arg [--no-whole-archive] ==> ignore
     arg [--major-image-version] ==> ignore
     arg [0] ==> ignore
@@ -197,15 +197,15 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_001e3/fast"
-/usr/bin/make -f CMakeFiles/cmTC_001e3.dir/build.make CMakeFiles/cmTC_001e3.dir/build
+Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_bd770/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bd770.dir/build.make CMakeFiles/cmTC_bd770.dir/build
 make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_001e3.dir/feature_tests.c.obj
-/C/msys64/mingw64/bin/gcc.exe    -std=c11 -o CMakeFiles/cmTC_001e3.dir/feature_tests.c.obj   -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.c
-Linking C executable cmTC_001e3.exe
-/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_001e3.dir/objects.a
-/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_001e3.dir/objects.a "CMakeFiles/cmTC_001e3.dir/feature_tests.c.obj" 
-/C/msys64/mingw64/bin/gcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_001e3.dir/objects.a -Wl,--no-whole-archive  -o cmTC_001e3.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+Building C object CMakeFiles/cmTC_bd770.dir/feature_tests.c.obj
+/C/msys64/mingw64/bin/gcc.exe    -std=c11 -o CMakeFiles/cmTC_bd770.dir/feature_tests.c.obj   -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.c
+Linking C executable cmTC_bd770.exe
+/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_bd770.dir/objects.a
+/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_bd770.dir/objects.a "CMakeFiles/cmTC_bd770.dir/feature_tests.c.obj" 
+/C/msys64/mingw64/bin/gcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_bd770.dir/objects.a -Wl,--no-whole-archive  -o cmTC_bd770.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
 make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
 
 
@@ -218,15 +218,15 @@ make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bc
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_16328/fast"
-/usr/bin/make -f CMakeFiles/cmTC_16328.dir/build.make CMakeFiles/cmTC_16328.dir/build
+Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_41544/fast"
+/usr/bin/make -f CMakeFiles/cmTC_41544.dir/build.make CMakeFiles/cmTC_41544.dir/build
 make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_16328.dir/feature_tests.c.obj
-/C/msys64/mingw64/bin/gcc.exe    -std=c99 -o CMakeFiles/cmTC_16328.dir/feature_tests.c.obj   -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.c
-Linking C executable cmTC_16328.exe
-/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_16328.dir/objects.a
-/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_16328.dir/objects.a "CMakeFiles/cmTC_16328.dir/feature_tests.c.obj" 
-/C/msys64/mingw64/bin/gcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_16328.dir/objects.a -Wl,--no-whole-archive  -o cmTC_16328.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+Building C object CMakeFiles/cmTC_41544.dir/feature_tests.c.obj
+/C/msys64/mingw64/bin/gcc.exe    -std=c99 -o CMakeFiles/cmTC_41544.dir/feature_tests.c.obj   -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.c
+Linking C executable cmTC_41544.exe
+/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_41544.dir/objects.a
+/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_41544.dir/objects.a "CMakeFiles/cmTC_41544.dir/feature_tests.c.obj" 
+/C/msys64/mingw64/bin/gcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_41544.dir/objects.a -Wl,--no-whole-archive  -o cmTC_41544.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
 make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
 
 
@@ -239,15 +239,15 @@ make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bc
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_211ea/fast"
-/usr/bin/make -f CMakeFiles/cmTC_211ea.dir/build.make CMakeFiles/cmTC_211ea.dir/build
+Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_de170/fast"
+/usr/bin/make -f CMakeFiles/cmTC_de170.dir/build.make CMakeFiles/cmTC_de170.dir/build
 make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_211ea.dir/feature_tests.c.obj
-/C/msys64/mingw64/bin/gcc.exe    -std=c90 -o CMakeFiles/cmTC_211ea.dir/feature_tests.c.obj   -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.c
-Linking C executable cmTC_211ea.exe
-/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_211ea.dir/objects.a
-/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_211ea.dir/objects.a "CMakeFiles/cmTC_211ea.dir/feature_tests.c.obj" 
-/C/msys64/mingw64/bin/gcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_211ea.dir/objects.a -Wl,--no-whole-archive  -o cmTC_211ea.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+Building C object CMakeFiles/cmTC_de170.dir/feature_tests.c.obj
+/C/msys64/mingw64/bin/gcc.exe    -std=c90 -o CMakeFiles/cmTC_de170.dir/feature_tests.c.obj   -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.c
+Linking C executable cmTC_de170.exe
+/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_de170.dir/objects.a
+/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_de170.dir/objects.a "CMakeFiles/cmTC_de170.dir/feature_tests.c.obj" 
+/C/msys64/mingw64/bin/gcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_de170.dir/objects.a -Wl,--no-whole-archive  -o cmTC_de170.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
 make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
 
 
@@ -255,3 +255,123 @@ make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bc
     Feature record: C_FEATURE:0c_restrict
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
+Determining if the CXX compiler works passed with the following output:
+Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_bf021/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bf021.dir/build.make CMakeFiles/cmTC_bf021.dir/build
+make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj
+/C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/clang-bcc.exe      -o CMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+
+[[CLANG-BCC]]:START
+[[CLANG-BCC]]:Frontend = C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc-msys2\clang-bcc.exe
+[[CLANG-BCC]]:Impersonating clang/clang++  -o CMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+[[CLANG-BCC]]:Build call asumed
+[[CLANG-BCC]]:Decided to use back-end compiler C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
+[[CLANG-BCC]]:Parameter Transformation
+	<IN Parameter List (vaules between [...]>
+	[-o]
+	[CMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj]
+	[-c]
+	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
+[[CLANG-BCC]]:Compile to object/archive Parameters
+	<OUT Parameter List (vaules between [...]>
+	[-tR]
+	[-DWIN32]
+	[-tM]
+	[-Od]
+	[-v]
+	[-oCMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj]
+	[-P]
+	[-c]
+	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
+[[CLANG-BCC]]:Actual Compiler = C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
+	<Parameter List (vaules between [...]>
+	[-tR]
+	[-DWIN32]
+	[-tM]
+	[-Od]
+	[-v]
+	[-oCMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj]
+	[-P]
+	[-c]
+	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
+[[CLANG-BCC]]:START COMPILER
+[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -DWIN32 -tM -Od -v -oCMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj -P -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx:
+
+[[CLANG-BCC]]:COMPILER END
+[[CLANG-BCC]]:END
+Linking CXX executable cmTC_bf021.exe
+/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_bf021.dir/objects.a
+/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_bf021.dir/objects.a "CMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj" 
+/C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/clang-bcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_bf021.dir/objects.a -Wl,--no-whole-archive  -o cmTC_bf021.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+
+[[CLANG-BCC]]:START
+[[CLANG-BCC]]:Frontend = C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc-msys2\clang-bcc.exe
+[[CLANG-BCC]]:Impersonating clang/clang++  -Wl,--whole-archive CMakeFiles/cmTC_bf021.dir/objects.a -Wl,--no-whole-archive -o cmTC_bf021.exe -Wl,--major-image-version,0,--minor-image-version,0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+[[CLANG-BCC]]:Build call asumed
+[[CLANG-BCC]]:Decided to use back-end compiler C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
+[[CLANG-BCC]]:Parameter Transformation
+	<IN Parameter List (vaules between [...]>
+	[-Wl,--whole-archive]
+	[CMakeFiles/cmTC_bf021.dir/objects.a]
+	[-Wl,--no-whole-archive]
+	[-o]
+	[cmTC_bf021.exe]
+	[-Wl,--major-image-version,0,--minor-image-version,0]
+	[-lkernel32]
+	[-luser32]
+	[-lgdi32]
+	[-lwinspool]
+	[-lshell32]
+	[-lole32]
+	[-loleaut32]
+	[-luuid]
+	[-lcomdlg32]
+	[-ladvapi32]
+[[CLANG-BCC]]:Link to Exe Parameters
+	<OUT Parameter List (vaules between [...]>
+	[-tR]
+	[-ecmTC_bf021.exe]
+	[-tM]
+	[-lS:1048576]
+	[-lSc:4098]
+	[-lH:1048576]
+	[-lHc:8192]
+	[-v]
+	[-tC]
+	[-tM]
+	[-Od]
+	[-v]
+	[CMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj]
+[[CLANG-BCC]]:Actual Compiler = C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
+	<Parameter List (vaules between [...]>
+	[-tR]
+	[-ecmTC_bf021.exe]
+	[-tM]
+	[-lS:1048576]
+	[-lSc:4098]
+	[-lH:1048576]
+	[-lHc:8192]
+	[-v]
+	[-tC]
+	[-tM]
+	[-Od]
+	[-v]
+	[CMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj]
+[[CLANG-BCC]]:START COMPILER
+[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -ecmTC_bf021.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v CMakeFiles/cmTC_bf021.dir/testCXXCompiler.cxx.obj
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
+bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
+bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
+Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
+
+[[CLANG-BCC]]:COMPILER END
+[[CLANG-BCC]]:END
+make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
+
+

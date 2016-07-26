@@ -2,6 +2,8 @@
 #include <iterator>
 #include <algorithm>
 #include <iostream>
+#include <sstream> 
+#include <regex>
 
 // CMake Generated MSYS calls
 /**
@@ -136,6 +138,20 @@ Parameters fromClangtoBcc32cCompilerParameters(const Parameters& parameters) {
 		//-v
 		//import32.lib  
 		//"CMakeFiles/cmTC_5530a.dir/testCXXCompiler.cxx.obj"
+
+		// Test to fix MSYS enviropnment providing ar.exe converted object.a instead of actually compiled obj-filed
+		// /C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_18743.dir/objects.a "CMakeFiles/cmTC_18743.dir/testCXXCompiler.cxx.obj"
+		// TODO: Does not work. The object file is no longer there?
+		/*
+		{
+			Parameter new_object_file_path;
+			std::regex elf_archive_name("objects.a");
+
+			// write the results to an output iterator
+			std::regex_replace(std::back_inserter(new_object_file_path),std::begin(object_file_path), std::end(object_file_path), elf_archive_name, "testCXXCompiler.cxx.obj");
+			object_file_path = new_object_file_path; // change the one we use
+		}
+		*/
 
 		result.push_back("-tR");
 		result.push_back(Parameter("-e") + exe_file_path);

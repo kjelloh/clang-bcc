@@ -7,7 +7,8 @@ using Parameters = std::vector<Parameter>;
 
 enum e_CompilerId {
 	eCompilerId_Undefined
-	, eCompilerId_clang
+	, eCompilerId_clang_c		// Clang C compiler
+	, eCompilerId_clang_cpp		// Clanf Cpp compiler
 	, eCompilerId_bcc32
 	, eCompilerId_bcc32c
 	, eCompilerId_bcc64
@@ -26,6 +27,11 @@ struct fromCompilerParameters {
 		std::for_each(std::begin(parameters), std::end(parameters), [](const Parameter& p) {std::cout << "\n\t[" << p << "]"; });
 
 		if (source_compiler_id == target_compiler_id) {
+			result = parameters;
+		}
+		else if ((source_compiler_id == eCompilerId_clang_cpp) && (target_compiler_id == eCompilerId_clang_c)) {
+			// The client has called the front-end to compile a C-file adn we decided to use clang back-end.
+			// Use parameters as provided from client
 			result = parameters;
 		}
 		else switch (target_compiler_id) {
