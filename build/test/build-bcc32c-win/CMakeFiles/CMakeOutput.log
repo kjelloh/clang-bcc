@@ -1,0 +1,117 @@
+The system is: Windows - 10.0.10586 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Program Files (x86)/Embarcadero/Studio/17.0/bin/bcc32c.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+CMakeCCompilerId.c:
+Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.tds"
+
+The C compiler identification is Embarcadero, found in "C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-bcc32c-win/CMakeFiles/3.5.1/CompilerIdC/CMakeCCompilerId.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Program Files (x86)/Embarcadero/Studio/17.0/bin/bcc32c.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+CMakeCXXCompilerId.cpp:
+Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.tds"
+
+The CXX compiler identification is Embarcadero, found in "C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-bcc32c-win/CMakeFiles/3.5.1/CompilerIdCXX/CMakeCXXCompilerId.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-bcc32c-win/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_c57fd\fast"
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+	make -f CMakeFiles\cmTC_c57fd.dir\build.make -l -o  CMakeFiles\cmTC_c57fd.dir\build
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+Building C object CMakeFiles/cmTC_c57fd.dir/testCCompiler.c.obj
+	C:\PROGRA~2\EMBARC~1\Studio\17.0\bin\bcc32c.exe -tR -DWIN32   -tM -Od -v -oCMakeFiles\cmTC_c57fd.dir\testCCompiler.c.obj -c C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-bcc32c-win\CMakeFiles\CMakeTmp\testCCompiler.c
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-bcc32c-win\CMakeFiles\CMakeTmp\testCCompiler.c:
+Linking C executable cmTC_c57fd.exe
+	C:\PROGRA~2\EMBARC~1\Studio\17.0\bin\bcc32c.exe -tR -ecmTC_c57fd.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v @MAKE0000.@@@
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
+bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
+bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
+Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-bcc32c-win/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_99aaa\fast"
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+	make -f CMakeFiles\cmTC_99aaa.dir\build.make -l -o  CMakeFiles\cmTC_99aaa.dir\build
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+Building C object CMakeFiles/cmTC_99aaa.dir/CMakeCCompilerABI.c.obj
+	C:\PROGRA~2\EMBARC~1\Studio\17.0\bin\bcc32c.exe -tR -DWIN32   -tM -Od -v -oCMakeFiles\cmTC_99aaa.dir\CMakeCCompilerABI.c.obj -c "C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCCompilerABI.c"
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCCompilerABI.c:
+Linking C executable cmTC_99aaa.exe
+	C:\PROGRA~2\EMBARC~1\Studio\17.0\bin\bcc32c.exe -tR -ecmTC_99aaa.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v @MAKE0000.@@@
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
+bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
+bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
+Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-bcc32c-win/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_8d132\fast"
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+	make -f CMakeFiles\cmTC_8d132.dir\build.make -l -o  CMakeFiles\cmTC_8d132.dir\build
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+Building CXX object CMakeFiles/cmTC_8d132.dir/testCXXCompiler.cxx.obj
+	C:\PROGRA~2\EMBARC~1\Studio\17.0\bin\bcc32c.exe -tR -DWIN32   -tM -Od -v -oCMakeFiles\cmTC_8d132.dir\testCXXCompiler.cxx.obj -P -c C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-bcc32c-win\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-bcc32c-win\CMakeFiles\CMakeTmp\testCXXCompiler.cxx:
+Linking CXX executable cmTC_8d132.exe
+	C:\PROGRA~2\EMBARC~1\Studio\17.0\bin\bcc32c.exe -tR -ecmTC_8d132.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v @MAKE0000.@@@
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
+bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
+bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
+Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-bcc32c-win/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_98fb1\fast"
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+	make -f CMakeFiles\cmTC_98fb1.dir\build.make -l -o  CMakeFiles\cmTC_98fb1.dir\build
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+Building CXX object CMakeFiles/cmTC_98fb1.dir/CMakeCXXCompilerABI.cpp.obj
+	C:\PROGRA~2\EMBARC~1\Studio\17.0\bin\bcc32c.exe -tR -DWIN32   -tM -Od -v -oCMakeFiles\cmTC_98fb1.dir\CMakeCXXCompilerABI.cpp.obj -P -c "C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCXXCompilerABI.cpp"
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+C:\Program Files (x86)\CMake\share\cmake-3.5\Modules\CMakeCXXCompilerABI.cpp:
+Linking CXX executable cmTC_98fb1.exe
+	C:\PROGRA~2\EMBARC~1\Studio\17.0\bin\bcc32c.exe -tR -ecmTC_98fb1.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v @MAKE0000.@@@
+Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
+bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
+bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
+bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
+Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
+
+
