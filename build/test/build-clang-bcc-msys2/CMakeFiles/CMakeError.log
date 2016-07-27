@@ -1,23 +1,23 @@
-Detecting CXX compiler ABI info failed to compile with the following output:
+Determining if the CXX compiler works failed with the following output:
 Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_b2ece/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b2ece.dir/build.make CMakeFiles/cmTC_b2ece.dir/build
+Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_9001b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9001b.dir/build.make CMakeFiles/cmTC_9001b.dir/build
 make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj
-/C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/clang-bcc.exe      -o CMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj -c /C/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp
+Building CXX object CMakeFiles/cmTC_9001b.dir/testCXXCompiler.cxx.obj
+/C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/clang-bcc.exe      -o CMakeFiles/cmTC_9001b.dir/testCXXCompiler.cxx.obj -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
 
 [[CLANG-BCC]]:START
 [[CLANG-BCC]]:Frontend = C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc-msys2\clang-bcc.exe
-[[CLANG-BCC]]:Impersonating clang/clang++  -o CMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj -c C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp
-[[CLANG-BCC]]:CMake << Compiler ABI output identification>> call detected
+[[CLANG-BCC]]:Impersonating clang/clang++  -o CMakeFiles/cmTC_9001b.dir/testCXXCompiler.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+[[CLANG-BCC]]:Build call asumed
 [[CLANG-BCC]]:Decided to use back-end compiler C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
 [[CLANG-BCC]]:Parameter Transformation
 	<IN Parameter List (vaules between [...]>
 	[-o]
-	[CMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj]
+	[CMakeFiles/cmTC_9001b.dir/testCXXCompiler.cxx.obj]
 	[-c]
-	[C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp]
+	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
 [[CLANG-BCC]]:Compile to object/archive Parameters
 	<OUT Parameter List (vaules between [...]>
 	[-tR]
@@ -25,10 +25,10 @@ Building CXX object CMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj
 	[-tM]
 	[-Od]
 	[-v]
-	[-oCMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj]
+	[-oCMakeFiles/cmTC_9001b.dir/testCXXCompiler.cxx.obj]
 	[-P]
 	[-c]
-	[C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp]
+	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
 [[CLANG-BCC]]:Actual Compiler = C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
 	<Parameter List (vaules between [...]>
 	[-tR]
@@ -36,151 +36,34 @@ Building CXX object CMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj
 	[-tM]
 	[-Od]
 	[-v]
-	[-oCMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj]
+	[-oCMakeFiles/cmTC_9001b.dir/testCXXCompiler.cxx.obj]
 	[-P]
 	[-c]
-	[C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp]
+	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx]
 [[CLANG-BCC]]:START COMPILER
-[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -DWIN32 -tM -Od -v -oCMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj -P -c C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp
+[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -DWIN32 -tM -Od -v -oCMakeFiles/cmTC_9001b.dir/testCXXCompiler.cxx.obj -P -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
 Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
-C:/msys64/mingw64/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp:
+C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp/testCXXCompiler.cxx:
 
 [[CLANG-BCC]]:COMPILER END
 [[CLANG-BCC]]:END
-Linking CXX executable cmTC_b2ece.exe
-/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_b2ece.dir/objects.a
-/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_b2ece.dir/objects.a "CMakeFiles/cmTC_b2ece.dir/CMakeCXXCompilerABI.cpp.obj" 
-/C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/clang-bcc.exe      -v -Wl,--whole-archive CMakeFiles/cmTC_b2ece.dir/objects.a -Wl,--no-whole-archive  -o cmTC_b2ece.exe -Wl,--major-image-version,0,--minor-image-version,0   
+Linking CXX executable cmTC_9001b.exe
+/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_9001b.dir/objects.a
+/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_9001b.dir/objects.a "CMakeFiles/cmTC_9001b.dir/testCXXCompiler.cxx.obj" 
+/C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/clang-bcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_9001b.dir/objects.a -Wl,--no-whole-archive  -o cmTC_9001b.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
 
 [[CLANG-BCC]]:START
 [[CLANG-BCC]]:Frontend = C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc-msys2\clang-bcc.exe
-[[CLANG-BCC]]:Impersonating clang/clang++  -v -Wl,--whole-archive CMakeFiles/cmTC_b2ece.dir/objects.a -Wl,--no-whole-archive -o cmTC_b2ece.exe -Wl,--major-image-version,0,--minor-image-version,0
-[[CLANG-BCC]]:Build call asumed
-[[CLANG-BCC]]:Decided to use back-end compiler C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
-[[CLANG-BCC]]:Parameter Transformation
-	<IN Parameter List (vaules between [...]>
-	[-v]
-	[-Wl,--whole-archive]
-	[CMakeFiles/cmTC_b2ece.dir/objects.a]
-	[-Wl,--no-whole-archive]
-	[-o]
-	[cmTC_b2ece.exe]
-	[-Wl,--major-image-version,0,--minor-image-version,0]
-[[CLANG-BCC]]:Link to Exe Parameters
-	<OUT Parameter List (vaules between [...]>
-	[-tR]
-	[-ecmTC_b2ece.exe]
-	[-tM]
-	[-lS:1048576]
-	[-lSc:4098]
-	[-lH:1048576]
-	[-lHc:8192]
-	[-v]
-	[-tC]
-	[-tM]
-	[-Od]
-	[-v]
-	[CMakeFiles/cmTC_b2ece.dir/testCXXCompiler.cxx.obj]
-[[CLANG-BCC]]:Actual Compiler = C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
-	<Parameter List (vaules between [...]>
-	[-tR]
-	[-ecmTC_b2ece.exe]
-	[-tM]
-	[-lS:1048576]
-	[-lSc:4098]
-	[-lH:1048576]
-	[-lHc:8192]
-	[-v]
-	[-tC]
-	[-tM]
-	[-Od]
-	[-v]
-	[CMakeFiles/cmTC_b2ece.dir/testCXXCompiler.cxx.obj]
-[[CLANG-BCC]]:START COMPILER
-[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -ecmTC_b2ece.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v CMakeFiles/cmTC_b2ece.dir/testCXXCompiler.cxx.obj
-Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
-bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
-bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
-bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
-Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
-Fatal: Unable to open file 'TESTCXXCOMPILER.CXX.OBJ'
-bcc32c.exe: error: linker command failed with exit code 2 (use -Xdriver -v to see invocation)
-
-[[CLANG-BCC]]:COMPILER END
-[[CLANG-BCC]]:END
-make[1]: *** [CMakeFiles/cmTC_b2ece.dir/build.make:99: cmTC_b2ece.exe] Error 2
-make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-make: *** [Makefile:126: cmTC_b2ece/fast] Error 2
-
-
-
-Detecting CXX [-std=c++14] compiler features failed to compile with the following output:
-Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp
-
-Run Build Command:"C:/msys64/usr/bin/make.exe" "cmTC_d2505/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d2505.dir/build.make CMakeFiles/cmTC_d2505.dir/build
-make[1]: Entering directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_d2505.dir/feature_tests.cxx.obj
-/C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/clang-bcc.exe     -std=c++14 -o CMakeFiles/cmTC_d2505.dir/feature_tests.cxx.obj -c /C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.cxx
-
-[[CLANG-BCC]]:START
-[[CLANG-BCC]]:Frontend = C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc-msys2\clang-bcc.exe
-[[CLANG-BCC]]:Impersonating clang/clang++  -std=c++14 -o CMakeFiles/cmTC_d2505.dir/feature_tests.cxx.obj -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.cxx
-[[CLANG-BCC]]:Build call asumed
-[[CLANG-BCC]]:Decided to use back-end compiler C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
-[[CLANG-BCC]]:Parameter Transformation
-	<IN Parameter List (vaules between [...]>
-	[-std=c++14]
-	[-o]
-	[CMakeFiles/cmTC_d2505.dir/feature_tests.cxx.obj]
-	[-c]
-	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.cxx]
-[[CLANG-BCC]]:Compile to object/archive Parameters
-	<OUT Parameter List (vaules between [...]>
-	[-tR]
-	[-DWIN32]
-	[-tM]
-	[-Od]
-	[-v]
-	[-oCMakeFiles/cmTC_d2505.dir/feature_tests.cxx.obj]
-	[-P]
-	[-c]
-	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.cxx]
-[[CLANG-BCC]]:Actual Compiler = C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
-	<Parameter List (vaules between [...]>
-	[-tR]
-	[-DWIN32]
-	[-tM]
-	[-Od]
-	[-v]
-	[-oCMakeFiles/cmTC_d2505.dir/feature_tests.cxx.obj]
-	[-P]
-	[-c]
-	[C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.cxx]
-[[CLANG-BCC]]:START COMPILER
-[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -DWIN32 -tM -Od -v -oCMakeFiles/cmTC_d2505.dir/feature_tests.cxx.obj -P -c C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.cxx
-Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
-C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/feature_tests.cxx:
-
-[[CLANG-BCC]]:COMPILER END
-[[CLANG-BCC]]:END
-Linking CXX executable cmTC_d2505.exe
-/C/msys64/mingw64/bin/cmake.exe -E remove -f CMakeFiles/cmTC_d2505.dir/objects.a
-/C/msys64/mingw64/bin/ar.exe cr CMakeFiles/cmTC_d2505.dir/objects.a "CMakeFiles/cmTC_d2505.dir/feature_tests.cxx.obj" 
-/C/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/clang-bcc.exe       -Wl,--whole-archive CMakeFiles/cmTC_d2505.dir/objects.a -Wl,--no-whole-archive  -o cmTC_d2505.exe -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
-
-[[CLANG-BCC]]:START
-[[CLANG-BCC]]:Frontend = C:\Users\kjell-olovhogdahl\Documents\GitHub\clang-bcc\build\test\build-clang-bcc-msys2\clang-bcc.exe
-[[CLANG-BCC]]:Impersonating clang/clang++  -Wl,--whole-archive CMakeFiles/cmTC_d2505.dir/objects.a -Wl,--no-whole-archive -o cmTC_d2505.exe -Wl,--major-image-version,0,--minor-image-version,0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+[[CLANG-BCC]]:Impersonating clang/clang++  -Wl,--whole-archive CMakeFiles/cmTC_9001b.dir/objects.a -Wl,--no-whole-archive -o cmTC_9001b.exe -Wl,--major-image-version,0,--minor-image-version,0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
 [[CLANG-BCC]]:Build call asumed
 [[CLANG-BCC]]:Decided to use back-end compiler C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
 [[CLANG-BCC]]:Parameter Transformation
 	<IN Parameter List (vaules between [...]>
 	[-Wl,--whole-archive]
-	[CMakeFiles/cmTC_d2505.dir/objects.a]
+	[CMakeFiles/cmTC_9001b.dir/objects.a]
 	[-Wl,--no-whole-archive]
 	[-o]
-	[cmTC_d2505.exe]
+	[cmTC_9001b.exe]
 	[-Wl,--major-image-version,0,--minor-image-version,0]
 	[-lkernel32]
 	[-luser32]
@@ -195,7 +78,7 @@ Linking CXX executable cmTC_d2505.exe
 [[CLANG-BCC]]:Link to Exe Parameters
 	<OUT Parameter List (vaules between [...]>
 	[-tR]
-	[-ecmTC_d2505.exe]
+	[-ecmTC_9001b.exe]
 	[-tM]
 	[-lS:1048576]
 	[-lSc:4098]
@@ -206,11 +89,11 @@ Linking CXX executable cmTC_d2505.exe
 	[-tM]
 	[-Od]
 	[-v]
-	[CMakeFiles/cmTC_d2505.dir/testCXXCompiler.cxx.obj]
+	[CMakeFiles/cmTC_9001b.dir/objects.a]
 [[CLANG-BCC]]:Actual Compiler = C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe
 	<Parameter List (vaules between [...]>
 	[-tR]
-	[-ecmTC_d2505.exe]
+	[-ecmTC_9001b.exe]
 	[-tM]
 	[-lS:1048576]
 	[-lSc:4098]
@@ -221,22 +104,21 @@ Linking CXX executable cmTC_d2505.exe
 	[-tM]
 	[-Od]
 	[-v]
-	[CMakeFiles/cmTC_d2505.dir/testCXXCompiler.cxx.obj]
+	[CMakeFiles/cmTC_9001b.dir/objects.a]
 [[CLANG-BCC]]:START COMPILER
-[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -ecmTC_d2505.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v CMakeFiles/cmTC_d2505.dir/testCXXCompiler.cxx.obj
+[[CLANG-BCC]]:CreateProcess="C:\Program Files (x86)\Embarcadero\Studio\17.0\bin\bcc32c.exe" -tR -ecmTC_9001b.exe -tM -lS:1048576 -lSc:4098 -lH:1048576 -lHc:8192 -v -tC -tM -Od -v CMakeFiles/cmTC_9001b.dir/objects.a
 Embarcadero C++ 7.10 for Win32 Copyright (c) 2012-2015 Embarcadero Technologies, Inc.
 bcc32c.exe: warning: argument unused during compilation: '-Xclang -cxx-abi'
 bcc32c.exe: warning: argument unused during compilation: '-Xclang borland'
 bcc32c.exe: warning: argument unused during compilation: '-nobuiltininc'
 Turbo Incremental Link 6.72 Copyright (c) 1997-2015 Embarcadero Technologies, Inc.
-Fatal: Unable to open file 'TESTCXXCOMPILER.CXX.OBJ'
+Error: 'C:\USERS\KJELL-OLOVHOGDAHL\DOCUMENTS\GITHUB\CLANG-BCC\BUILD\TEST\BUILD-CLANG-BCC-MSYS2\CMAKEFILES\CMAKETMP\CMAKEFILES\CMTC_9001B.DIR\OBJECTS.A' contains invalid OMF record, type 0x21 (possibly COFF)
 bcc32c.exe: error: linker command failed with exit code 2 (use -Xdriver -v to see invocation)
 
 [[CLANG-BCC]]:COMPILER END
 [[CLANG-BCC]]:END
-make[1]: *** [CMakeFiles/cmTC_d2505.dir/build.make:99: cmTC_d2505.exe] Error 2
+make[1]: *** [CMakeFiles/cmTC_9001b.dir/build.make:99: cmTC_9001b.exe] Error 2
 make[1]: Leaving directory '/c/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bcc-msys2/CMakeFiles/CMakeTmp'
-make: *** [Makefile:126: cmTC_d2505/fast] Error 2
-
+make: *** [Makefile:126: cmTC_9001b/fast] Error 2
 
 

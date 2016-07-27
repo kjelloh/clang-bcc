@@ -16,9 +16,8 @@
 	#define _SCL_SECURE_NO_WARNINGS 
 #endif
 
-#include "Helpers.h"
+#include "BackEnd.h"
 #include "parameters.h"
-#include "Process.h"
 
 #include <windows.h>
 #include <iostream>
@@ -49,8 +48,7 @@
 // 	}
 // }}
 
-using Path = app::process::Path;
-
+using Path = BackEnd::process::Path;
 
 struct Compiler {
 	int execute(Parameters parameters);
@@ -65,7 +63,7 @@ int Compiler::execute(Parameters parameters) {
 		std::for_each(std::begin(parameters), std::end(parameters), [](const Parameter& p) {std::cout << "\n\t[" << p << "]"; });
 	}
 	std::cout << "\n[[CLANG-BCC]]:START COMPILER";
-	auto compile_result = app::process::execute(this->m_path, parameters);
+	auto compile_result = BackEnd::process::execute(this->m_path, parameters);
 	result = compile_result.get(); // Wait for process to end and access the returned code
 	std::cout << "\n[[CLANG-BCC]]:COMPILER END";
 	return result;
@@ -234,14 +232,15 @@ e_CallMode detectedCallMode(Parameters parameters) {
 			}
 		}
 
-		// TEST: Engage back-end compiler in a way that will surely fail (process class constructor will throw)
+
 		{
-			// Compiler backend_compiler{ "%&_invalid_path_!#" }; // TEST failure to create compiler process (constructor will throw)
-			// result = backend_compiler.execute(fromCompilerParameters<impersonated_compiler_id>::to(backend_compiler_id, parameters));
+			// TEST: Engage back-end compiler in a way that will surely fail (process class constructor will throw)
+			//Compiler backend_compiler{ "%&_invalid_path_!#" }; // TEST failure to create compiler process (constructor will throw)
+			//result = backend_compiler.execute(fromCompilerParameters<eCompilerId_clang_cpp>::to(backend_compiler_id, parameters));
 		}
 
-		// Invoke the back-end compiler with transformed parameters
 		{
+			// Invoke the back-end compiler with transformed parameters
 			Compiler backend_compiler{ backend_compiler_path };
 			// Transform parameters impersonating as clang CPP compiler (fingers crossed clang C-compiler parameters does not deviate to much?)
 			result = backend_compiler.execute(fromCompilerParameters<eCompilerId_clang_cpp>::to(backend_compiler_id, parameters));
