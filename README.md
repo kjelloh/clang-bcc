@@ -1,4 +1,4 @@
-# clang-bcc
+﻿# clang-bcc
 
 A clang compiler front-end that invokes an Embarcadero bcc compiler "behind the scene".
 
@@ -72,18 +72,19 @@ Kjell-Olovs-MacBook-Pro:clang-bcc kjell-olovhogdahl$ tree -L 4
     │   ├── bcc32c-win-test.bat
     │   ├── build-bcc32c-win
     │   │   ├── CMakeFiles
-    │   │   │   ├── CMakeOutput.log // Saved in Git for refernce purposes
-    │   │   ├── Makefile            // Saved in Git for refernce purposes
+    │   │   │   ├── CMakeOutput.log // Saved in Git for reference purposes
+    │   │   ├── Makefile            // Saved in Git for reference purposes
     │   ├── build-clang-bcc-msys2
     │   │   ├── CMakeFiles
-    │   │   │   ├── CMakeError.log  // Saved in Git for refernce purposes
-    │   │   │   ├── CMakeOutput.log // Saved in Git for refernce purposes
+    │   │   │   ├── CMakeError.log  // Saved in Git for reference purposes
+    │   │   │   ├── CMakeOutput.log // Saved in Git for reference purposes
     │   ├── build-clang-msys2
     │   │   ├── CMakeFiles
-    │   │   │   ├── CMakeOutput.log // Saved in Git for refernce purposes
-    │   │   ├── Makefile            // Saved in Git for refernce purposes
+    │   │   │   ├── CMakeOutput.log // Saved in Git for reference purposes
+    │   │   ├── Makefile            // Saved in Git for reference purposes
     │   ├── clang-bcc-msys2-test.sh
     │   ├── clang-m2sys-test.sh
+    │   ├── clang-bcc-obj-test.sh
     │   └── dummy_main.cpp
     └── vs_me.cmd
     
@@ -141,6 +142,37 @@ Kjell-Olovs-MacBook-Pro:clang-bcc kjell-olovhogdahl$ tree -L 4
     │   │   ├── CMakeFiles
     │   │   ├── Makefile
     │   │   └── cmake_install.cmake
+
+    │   ├── clang-bcc-obj-test.sh	// Calls clang-bcc to compile dummy_main.cpp to clang-bcc-bin/dummy_main.obj
+    │   ├── clang-bcc-bin
+    │   │   ├── dummy_main.obj		// Output of clang-bcc on success (For object file format studies) 
+    │   │   └── clang-bcc.exe           // On test - Copied from 
+
+                                        ├───build_vs
+                                        │   ├───Debug
+                                            │           clang-bcc.exe
+
+```
+
+## Object file format Issues (bcc output not in the same format as impersonated compiler format)
+
+To impersonate as another compiler we have the problem of generating object files with the same format as the compiler we personate as.
+
+* We know the clang-bcc frontend is always run on Windows (Embarcadero compilers exist onwindows only)
+* We expect it to work in MinGW console expecting to generate MinGW clang object files
+* But by actually engaging a bcc compiler (bcc32, bcc32c, bcc64) it generates object files of Embarcadero compiler format.
+
+  * bcc32 	==> OMF (http://docwiki.embarcadero.com/RADStudio/Seattle/en/BCC32)
+  * bcc32c	==> OMF (http://docwiki.embarcadero.com/RADStudio/Seattle/en/BCC32C)
+  * bcc64	==> ELF (http://docwiki.embarcadero.com/RADStudio/Seattle/en/BCC64)
+
+  * MinGW64 clang	==> ??
+
+* TODO: We have to conform that MinGW clang generates ELF format and that MinGW ar-command line (archive tool) generates ELF archives.
+
+  * If so we should be able to use bcc64 as backend compiler nad have it work on MinGW build tool chain (ELF all the way)?
+
+```
 
 ```
 
