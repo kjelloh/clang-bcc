@@ -1,0 +1,53 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/Program Files/LLVM/bin/clang.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+1120
+LINK : error LNK2001: unresolved external symbol mainCRTStartup
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\LIB\libcmt.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+a.exe : fatal error LNK1120: 1 unresolved externals
+clang.exe: error: linker command failed with exit code 1120 (use -v to see invocation)
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/Program Files/LLVM/bin/clang++.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+1120
+LINK : error LNK2001: unresolved external symbol mainCRTStartup
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\LIB\libcmt.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+a.exe : fatal error LNK1120: 1 unresolved externals
+clang++.exe: error: linker command failed with exit code 1120 (use -v to see invocation)
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-nmake/CMakeFiles/CMakeTmp
+
+Run Build Command:"nmake" "/NOLOGO" "cmTC_38c18\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTC_38c18.dir\build.make /nologo -L                  CMakeFiles\cmTC_38c18.dir\build
+Building C object CMakeFiles/cmTC_38c18.dir/testCCompiler.c.obj
+	C:\PROGRA~1\LLVM\bin\clang.exe  @C:\Users\KJELL-~1\AppData\Local\Temp\nm57A9.tmp
+clang.exe: error: no such file or directory: '/nologo'
+clang.exe: error: no such file or directory: '/DWIN32'
+clang.exe: error: no such file or directory: '/D_WINDOWS'
+clang.exe: error: no such file or directory: '/W3'
+clang.exe: error: no such file or directory: '/D_DEBUG'
+clang.exe: error: no such file or directory: '/MDd'
+clang.exe: error: no such file or directory: '/Zi'
+clang.exe: error: no such file or directory: '/Ob0'
+clang.exe: error: no such file or directory: '/Od'
+clang.exe: error: no such file or directory: '/RTC1'
+clang.exe: error: no such file or directory: '/FoCMakeFilescmTC_38c18.dirtestCCompiler.c.obj'
+clang.exe: error: no such file or directory: '/FdCMakeFilescmTC_38c18.dir -c'
+clang.exe: error: no such file or directory: 'C:Userskjell-olovhogdahlDocumentsGitHubclang-bccbuildtestbuild-clang-nmakeCMakeFilesCMakeTmptestCCompiler.c'
+clang.exe: error: no input files
+NMAKE : fatal error U1077: 'C:\PROGRA~1\LLVM\bin\clang.exe' : return code '0x1'
+Stop.
+NMAKE : fatal error U1077: '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\nmake.exe"' : return code '0x2'
+Stop.
+
+

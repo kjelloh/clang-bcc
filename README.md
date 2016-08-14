@@ -115,42 +115,69 @@ Kjell-Olovs-MacBook-Pro:clang-bcc kjell-olovhogdahl$ tree -L 4
 
 ## Tests
 
+* Contains a number of scripts for CMake generation of build tool-chains in DOS and MinGW (MSYS2)
+* Cmake ==> DOS[Borland Make bcc32c] means CMake generation to DOS shell tool-chain of Borland Make using bcc32c compiler.
+* Scripts generating DOS shell build environments must be executed in a DOS shell.
+* Scripts generating MinGW shell build environments must be executed in MinGW/MSYS2 shell.
+* Scripts generating Microsoft NMake tool chain must be executed in Visual Stuio Developer Command prompt (PATH set to namke tool)
+
 ```
-    ├── test
-    │   ├── CmakeLists.txt
-    │   └── dummy_main.cpp
+    └───test
+        │   bcc32c_win_me.bat           // Cmake ==> DOS[Borland Make bcc32c] in build-bcc32c-win
+        │   clang-bcc-obj-test.sh       // clang-bcc default compile in build-clang-bcc-bin 
+        │   clang_bccmake_me.bat        // Cmake ==> DOS[Borland make clang-bcc] build-clang-bccmake
+        │   clang-bcc_msys2_me.sh       // Cmake ==> MinGW[MSYS2 make clang-bcc] build-bcc-msys2
+        │   clang_m2sys_me.sh           // CMake ==> MinGW[MSYS2 make default (GCC)] in build-clang-msys2
+        │   clang_nmake_me.cmd          // CMake ==> DOS[Microsoft NMake clang] in buld-clang-nmake
+        │   CmakeLists.txt
+        │   dummy_main.cpp
+        │
 
-    │   ├── bcc32c-win-test.bat         // DOS shell script - cmake generation of Borland Make using bcc32c (creates folder build-bcc32c-win)
-    │   ├── build-bcc32c-win            // Borland make bcc32c tool chain (created by DOS shell script bcc32c-win-test.bat)
-    │   │   ├── CMakeFiles
-    │   │   │   ├── CMakeOutput.log     // Saved in Git for refernce purposes
-    │   │   ├── Makefile                // Saved in Git for refernce purposes
+        │
+        ├───build-clang-bcc-msys2
+        │   └── clang-bcc.exe           // On test - Copied from 
 
-    │   ├── clang-bcc-msys2-test.sh     // MSYS2 shell script - cmake generation of autotool make using clang-bcc (creates build-clang-bcc-msys2)
-    │   ├── build-clang-bcc-msys2       // Autotools clang-bcc tool-chain (Created by MSYS2 shell script clang-bcc-msys2-test.sh)
-    │   │   ├── CMakeCache.txt
-    │   │   ├── CMakeFiles
-    │   │   └── clang-bcc.exe           // On test - Copied from 
+                                        ├───build_vs
+                                        │   ├───Debug
+                                            │           clang-bcc.exe        
+        │   │
+        │   └───CMakeFiles
+        │       │   CMakeError.log
+        │       │   CMakeOutput.log
+
+        ├── clang-bcc-bin
+        │   ├── dummy_main.obj		// Output of clang-bcc on success (For object file format studies) 
+        │   └── clang-bcc.exe           // On test - Copied from 
 
                                         ├───build_vs
                                         │   ├───Debug
                                             │           clang-bcc.exe
 
-    │   ├── clang-m2sys-test.sh         // MSYS2 shell script - cmake generation of autotools make using clang/clang++ (creates build-clang-msys2) 
-    │   ├── build-clang-msys2           // Autotools clang++ tool chain (Created by MSYS2 shell clang-m2sys-test.sh)
-    │   │   ├── CMakeCache.txt
-    │   │   ├── CMakeFiles
-    │   │   ├── Makefile
-    │   │   └── cmake_install.cmake
+        ├───build-clang-bccmake
+        │   │
+        │   └───CMakeFiles
+        │       │   CMakeError.log
+        │       │   CMakeOutput.log
 
-    │   ├── clang-bcc-obj-test.sh	// Calls clang-bcc to compile dummy_main.cpp to clang-bcc-bin/dummy_main.obj
-    │   ├── clang-bcc-bin
-    │   │   ├── dummy_main.obj		// Output of clang-bcc on success (For object file format studies) 
-    │   │   └── clang-bcc.exe           // On test - Copied from 
+        ├───build-bcc32c-win            // CMake success too-chain using Borland Make and bcc32c 
+        │   │   Makefile
+        │   │
+        │   └───CMakeFiles
+        │       │   CMakeOutput.log
 
-                                        ├───build_vs
-                                        │   ├───Debug
-                                            │           clang-bcc.exe
+        ├───build-clang-msys2       // CMake success tool-chain using MSYS2 make and clang/clang++ 
+        │   │   Makefile
+        │   │
+        │   └───CMakeFiles
+        │       │   CMakeOutput.log
+
+        │
+        ├───build-clang-nmake
+        │   │   CMakeCache.txt
+        │   │
+        │   └───CMakeFiles
+        │       │   CMakeError.log
+        │       │   CMakeOutput.log
 
 ```
 
@@ -158,15 +185,17 @@ Kjell-Olovs-MacBook-Pro:clang-bcc kjell-olovhogdahl$ tree -L 4
 
 To impersonate as another compiler we have the problem of generating object files with the same format as the compiler we personate as.
 
+**Build-tool-chain ==> Clang front-end :: clang-bcc :: bcc-compiler ==> bcc object file format**
+
 * We know the clang-bcc frontend is always run on Windows (Embarcadero compilers exist onwindows only)
-* We expect it to work in MinGW console expecting to generate MinGW clang object files
+* In MinGW shell the tool-chain (automake emulation) expect to generate MinGW clang object files
 * But by actually engaging a bcc compiler (bcc32, bcc32c, bcc64) it generates object files of Embarcadero compiler format.
 
   * bcc32 	==> OMF (http://docwiki.embarcadero.com/RADStudio/Seattle/en/BCC32)
   * bcc32c	==> OMF (http://docwiki.embarcadero.com/RADStudio/Seattle/en/BCC32C)
   * bcc64	==> ELF (http://docwiki.embarcadero.com/RADStudio/Seattle/en/BCC64)
 
-  * MinGW64 clang	==> ??
+  * MinGW64 clang	==> COFF??
 
 * TODO: We have to conform that MinGW clang generates ELF format and that MinGW ar-command line (archive tool) generates ELF archives.
 
@@ -203,7 +232,78 @@ To impersonate as another compiler we have the problem of generating object file
   * \- No parameter adaption yet implemented.
   * \- Atual build with generated environment and clang-bcc.exe as compiler/linker not yet done.
 
-## Status for MINGW console test generating MSYS make files
+## Status: CMake ==> DOS[Borland MAKE for Clang]
+
+* For some reason CMake generated NMake build does not seem to feed clang with clang parameters?
+
+```
+Determining if the C compiler works failed with the following output:
+Change Dir: C:/Users/kjell-olovhogdahl/Documents/GitHub/clang-bcc/build/test/build-clang-bccmake/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_e8a9e\fast"
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+
+	make -f CMakeFiles\cmTC_e8a9e.dir\build.make -l -o  CMakeFiles\cmTC_e8a9e.dir\build
+
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+
+Building C object CMakeFiles/cmTC_e8a9e.dir/testCCompiler.c.obj
+
+	C:\PROGRA~1\LLVM\bin\clang.exe @MAKE0000.@@@
+
+clang.exe: error: no such file or directory: '/nologo'
+clang.exe: error: no such file or directory: '/DWIN32'
+clang.exe: error: no such file or directory: '/D_WINDOWS'
+clang.exe: error: no such file or directory: '/W3'
+clang.exe: error: no such file or directory: '/D_DEBUG'
+clang.exe: error: no such file or directory: '/MDd'
+clang.exe: error: no such file or directory: '/Zi'
+clang.exe: error: no such file or directory: '/Ob0'
+clang.exe: error: no such file or directory: '/Od'
+clang.exe: error: no such file or directory: '/RTC1'
+clang.exe: error: no such file or directory: '/FoCMakeFilescmTC_e8a9e.dirtestCCompiler.c.obj'
+clang.exe: error: no such file or directory: '/FdCMakeFilescmTC_e8a9e.dir -c'
+clang.exe: error: no such file or directory: 'C:Userskjell-olovhogdahlDocumentsGitHubclang-bccbuildtestbuild-clang-bccmakeCMakeFilesCMakeTmptestCCompiler.c'
+clang.exe: error: no input files
+
+** error 1 ** deleting CMakeFiles\cmTC_e8a9e.dir\testCCompiler.c.obj
+** error 1 ** deleting cmTC_e8a9e\fast
+```
+
+  
+## Status: CMake ==> DOS[Microsoft NMAKE for Clang]
+
+* For some reason CMake generated NMake build does not seem to feed clang with clang parameters?
+
+```
+Run Build Command:"make" "cmTC_e8a9e\fast"
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+
+	make -f CMakeFiles\cmTC_e8a9e.dir\build.make -l -o  CMakeFiles\cmTC_e8a9e.dir\build
+
+MAKE Version 5.41  Copyright (c) 1987, 2014 Embarcadero Technologies, Inc.
+
+Building C object CMakeFiles/cmTC_e8a9e.dir/testCCompiler.c.obj
+
+	C:\PROGRA~1\LLVM\bin\clang.exe @MAKE0000.@@@
+
+clang.exe: error: no such file or directory: '/nologo'
+clang.exe: error: no such file or directory: '/DWIN32'
+clang.exe: error: no such file or directory: '/D_WINDOWS'
+clang.exe: error: no such file or directory: '/W3'
+clang.exe: error: no such file or directory: '/D_DEBUG'
+clang.exe: error: no such file or directory: '/MDd'
+clang.exe: error: no such file or directory: '/Zi'
+clang.exe: error: no such file or directory: '/Ob0'
+clang.exe: error: no such file or directory: '/Od'
+clang.exe: error: no such file or directory: '/RTC1'
+clang.exe: error: no such file or directory: '/FoCMakeFilescmTC_e8a9e.dirtestCCompiler.c.obj'
+clang.exe: error: no such file or directory: '/FdCMakeFilescmTC_e8a9e.dir -c'
+clang.exe: error: no such file or directory: 'C:Userskjell-olovhogdahlDocumentsGitHubclang-bccbuildtestbuild-clang-bccmakeCMakeFilesCMakeTmptestCCompiler.c'
+clang.exe: error: no input files
+```
+
+## Status: CMake ==> MinGW[MSYS2 make for clang-bcc front-end]
 
   * The test is invoked with project memner mingw_test.sh in test sub-folder of build folder.
 ```
